@@ -222,3 +222,6 @@ _Pvt_Extensions
 
 
 MQ2Auth0.h
+*.1.tlog
+*.lastbuildstate
+*u.tlog
