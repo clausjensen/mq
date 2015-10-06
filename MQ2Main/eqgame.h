@@ -36,6 +36,7 @@ GNU General Public License for more details.
 #define __EncryptPad2_x                                            0xCABAC8
 #define __EncryptPad3_x                                            0xCAB6C8
 #define __EncryptPad4_x                                            0xDC6240
+#define __EncryptPad5_x                                            0x11978F0
 #define __AC1_x                                                    0x7A5AC5
 #define __AC2_x                                                    0x54EEE7
 #define __AC3_x                                                    0x5636E0
@@ -44,6 +45,8 @@ GNU General Public License for more details.
 #define __AC6_x                                                    0x579C99
 #define __AC7_x                                                    0x57089C
 #define __AC1_Data                                                 0x11111111
+#define __EP1_Data                                                 0x845E8
+
 // Direct Input
 #define DI8__Main_x                                                0x11978C8
 #define DI8__Keyboard_x                                            0x11978CC
@@ -697,6 +700,7 @@ GNU General Public License for more details.
 #define EQPlayer__IsBodyType_j_x                                   0x9243A0
 #define EQPlayer__IsTargetable_x                                   0x924CA0
 #define EQPlayer__CanSee_x                                         0x9251C0
+#define PlayerZoneClient__ChangeHeight_x                           0x5DCFF0
 
 //EQPlayerManager
 #define EQPlayerManager__GetSpawnByID_x                            0x5D1810
