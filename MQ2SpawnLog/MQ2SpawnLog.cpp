@@ -976,7 +976,7 @@ PLUGIN_API void SetGameState(unsigned long ulGameState)
         sprintf(szLogFile, "MQ2SpawnLog-%s-%s.log",((PCHARINFO)pCharData)->Name, GetShortZone(((PSPAWNINFO)pLocalPlayer)->Zone));
         sprintf(szCharName, "%s.%s", EQADDR_SERVERNAME, ((PCHARINFO)pCharData)->Name);
         sprintf(szLogPath, "%s\\%s", szDirPath, szLogFile);
-        CreateOurWnd();
+        /*CreateOurWnd();*/
         tSeconds = time(NULL);
         bZoning = false;
 
@@ -987,11 +987,11 @@ PLUGIN_API void SetGameState(unsigned long ulGameState)
         bZoning = true;
         if (ulGameState == GAMESTATE_CHARSELECT)
         {
-            KillOurWnd(true);
+            //KillOurWnd(true);
         }
         else if (ulGameState == GAMESTATE_PRECHARSELECT)
         {
-            KillOurWnd(false);
+            //KillOurWnd(false);
         }
         EndLog();
     }
@@ -1002,13 +1002,13 @@ PLUGIN_API void OnReloadUI()
     if (GetGameState() == GAMESTATE_INGAME)
     {
         sprintf(szCharName, "%s.%s", EQADDR_SERVERNAME, ((PCHARINFO)pCharData)->Name);
-        CreateOurWnd();
+        //CreateOurWnd();
     }
 }
 
 PLUGIN_API void OnCleanUI()
 {
-    KillOurWnd(true);
+    //KillOurWnd(true);
 }
 
 PLUGIN_API void OnPulse()
@@ -1036,5 +1036,5 @@ PLUGIN_API void ShutdownPlugin()
      RemoveCommand("/dspwn");*/
     EndLog();
     HandleConfig(true);
-    KillOurWnd(false);
+    //KillOurWnd(false);
 }
