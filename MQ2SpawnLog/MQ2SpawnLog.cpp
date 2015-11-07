@@ -4,7 +4,7 @@
 #include "../MQ2Plugin.h"
 #include <vector>
 
-const char*  MODULE_NAME    = "MQ2Spawns";
+const char*  MODULE_NAME    = "MQ2SpawnLog";
 const double MODULE_VERSION = 11.0324;
 PreSetup(MODULE_NAME);
 
@@ -1817,7 +1817,7 @@ PLUGIN_API void SetGameState(unsigned long ulGameState)
 
     if (ulGameState == GAMESTATE_INGAME)
     {
-        sprintf(szLogFile, "MQ2Spawns-%s.log", GetShortZone(((PSPAWNINFO)pLocalPlayer)->Zone));
+        sprintf(szLogFile, "MQ2SpawnLog-%s-%s.log",((PCHARINFO)pCharData)->Name, GetShortZone(((PSPAWNINFO)pLocalPlayer)->Zone));
         sprintf(szCharName, "%s.%s", EQADDR_SERVERNAME, ((PCHARINFO)pCharData)->Name);
         sprintf(szLogPath, "%s\\%s", szDirPath, szLogFile);
         CreateOurWnd();
@@ -1870,9 +1870,9 @@ PLUGIN_API void OnPulse()
 
 PLUGIN_API void InitializePlugin()
 {
-    AddCommand("/spawn", WatchSpawns);
-    AddCommand("/spwn",  ToggleSpawns);
-    AddCommand("/dspwn", ToggleDespawns);
+    // AddCommand("/spawn", WatchSpawns);
+    // AddCommand("/spwn",  ToggleSpawns);
+    // AddCommand("/dspwn", ToggleDespawns);
     tSeconds = time(NULL);
     HandleConfig(false);
     bLoaded = true;
@@ -1880,9 +1880,9 @@ PLUGIN_API void InitializePlugin()
 
 PLUGIN_API void ShutdownPlugin()
 {
-    RemoveCommand("/spawn");
-    RemoveCommand("/spwn");
-    RemoveCommand("/dspwn");
+    // RemoveCommand("/spawn");
+    // RemoveCommand("/spwn");
+    // RemoveCommand("/dspwn");
     if (bLogActive) EndLog();
     HandleConfig(true);
     KillOurWnd(false);
