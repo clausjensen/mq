@@ -96,7 +96,7 @@ void WriteToLog(char* szWriteLine)
         char szTemp[MAX_STRING] = {0};
         time(&rawtime);
         timeinfo = localtime(&rawtime);
-        strftime(szTemp, MAX_STRING, "[%H:%M:%S] ", timeinfo);
+        strftime(szTemp, MAX_STRING, "[%Y-%m-%d %H:%M:%S] ", timeinfo);
         strcat(szTemp, szWriteLine);
         strcat(szTemp, "\n");
         fprintf(fOurLog, "%s", szTemp);
@@ -1582,7 +1582,7 @@ void WriteSpawn(PSPAWNINFO pFormatSpawn, char* szTypeString, char* szLocString, 
     if (bLogActive && bLogReady)
     {
         char szLogOut[MAX_STRING] = {0};
-        sprintf(szLogOut, "%s: [ %d %s %s ] < %s > ( %s ) ( id %d ) %s", bSpawn ? "SPAWNED" : "DESPAWN", pFormatSpawn->Level, pEverQuest->GetRaceDesc(pFormatSpawn->Race), GetClassDesc(pFormatSpawn->Class), pFormatSpawn->DisplayedName, szTypeString, pFormatSpawn->SpawnID, szLocString);
+        sprintf(szLogOut, "%s: [ %d, %s, %s ] < %s > ( %s ) ( id %d ) %s", bSpawn ? "SPAWNED" : "DESPAWN", pFormatSpawn->Level, pEverQuest->GetRaceDesc(pFormatSpawn->Race), GetClassDesc(pFormatSpawn->Class), pFormatSpawn->DisplayedName, szTypeString, pFormatSpawn->SpawnID, szLocString);
         WriteToLog(szLogOut);
     }
     // end of logging function
@@ -1870,9 +1870,9 @@ PLUGIN_API void OnPulse()
 
 PLUGIN_API void InitializePlugin()
 {
-    // AddCommand("/spawn", WatchSpawns);
-    // AddCommand("/spwn",  ToggleSpawns);
-    // AddCommand("/dspwn", ToggleDespawns);
+     AddCommand("/spawn", WatchSpawns);
+     AddCommand("/spwn",  ToggleSpawns);
+     AddCommand("/dspwn", ToggleDespawns);
     tSeconds = time(NULL);
     HandleConfig(false);
     bLoaded = true;
@@ -1880,9 +1880,9 @@ PLUGIN_API void InitializePlugin()
 
 PLUGIN_API void ShutdownPlugin()
 {
-    // RemoveCommand("/spawn");
-    // RemoveCommand("/spwn");
-    // RemoveCommand("/dspwn");
+     RemoveCommand("/spawn");
+     RemoveCommand("/spwn");
+     RemoveCommand("/dspwn");
     if (bLogActive) EndLog();
     HandleConfig(true);
     KillOurWnd(false);
