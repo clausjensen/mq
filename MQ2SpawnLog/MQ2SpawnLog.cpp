@@ -141,21 +141,6 @@ public:
 
     CWatchType PC;
     CWatchType NPC;
-    CWatchType MOUNT;
-    CWatchType PET;
-    CWatchType MERCENARY;
-    CWatchType CORPSE;
-    CWatchType FLYER;
-    CWatchType CAMPFIRE;
-    CWatchType BANNER;
-    CWatchType AURA;
-    CWatchType OBJECT;
-    CWatchType UNTARGETABLE;
-    CWatchType CHEST;
-    CWatchType TRAP;
-    CWatchType TIMER;
-    CWatchType TRIGGER;
-    CWatchType ITEM;
     CWatchType UNKNOWN;
 
     CWatchType ALL;
@@ -343,81 +328,6 @@ void HandleConfig(bool bSave)
         WritePrivateProfileString("NPC",          "MinLVL",  itoa(CFG.NPC.MinLVL,          szSave, 10),  INIFileName);
         WritePrivateProfileString("NPC",          "MaxLVL",  itoa(CFG.NPC.MaxLVL,          szSave, 10),  INIFileName);
         WritePrivateProfileString("NPC",          "Color",   itohex(CFG.NPC.Color,         szSave),      INIFileName);
-        WritePrivateProfileString("MOUNT",        "Spawn",   CFG.MOUNT.Spawn          ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("MOUNT",        "Despawn", CFG.MOUNT.Despawn        ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("MOUNT",        "MinLVL",  itoa(CFG.MOUNT.MinLVL,         szSave, 10), INIFileName);
-        WritePrivateProfileString("MOUNT",        "MaxLVL",  itoa(CFG.MOUNT.MaxLVL,         szSave, 10), INIFileName);
-        WritePrivateProfileString("MOUNT",        "Color",   itohex(CFG.MOUNT.Color,        szSave),     INIFileName);
-        WritePrivateProfileString("PET",          "Spawn",   CFG.PET.Spawn            ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("PET",          "Despawn", CFG.PET.Despawn          ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("PET",          "MinLVL",  itoa(CFG.PET.MinLVL,           szSave, 10), INIFileName);
-        WritePrivateProfileString("PET",          "MaxLVL",  itoa(CFG.PET.MaxLVL,           szSave, 10), INIFileName);
-        WritePrivateProfileString("PET",          "Color",   itohex(CFG.PET.Color,          szSave),     INIFileName);
-        WritePrivateProfileString("MERCENARY",    "Spawn",   CFG.MERCENARY.Spawn      ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("MERCENARY",    "Despawn", CFG.MERCENARY.Despawn    ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("MERCENARY",    "MinLVL",  itoa(CFG.MERCENARY.MinLVL,     szSave, 10), INIFileName);
-        WritePrivateProfileString("MERCENARY",    "MaxLVL",  itoa(CFG.MERCENARY.MaxLVL,     szSave, 10), INIFileName);
-        WritePrivateProfileString("MERCENARY",    "Color",   itohex(CFG.MERCENARY.Color,    szSave),     INIFileName);
-        WritePrivateProfileString("FLYER",        "Spawn",   CFG.FLYER.Spawn          ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("FLYER",        "Despawn", CFG.FLYER.Despawn        ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("FLYER",        "MinLVL",  itoa(CFG.FLYER.MinLVL,         szSave, 10), INIFileName);
-        WritePrivateProfileString("FLYER",        "MaxLVL",  itoa(CFG.FLYER.MaxLVL,         szSave, 10), INIFileName);
-        WritePrivateProfileString("FLYER",        "Color",   itohex(CFG.FLYER.Color,        szSave),     INIFileName);
-        WritePrivateProfileString("CAMPFIRE",     "Spawn",   CFG.CAMPFIRE.Spawn       ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("CAMPFIRE",     "Despawn", CFG.CAMPFIRE.Despawn     ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("CAMPFIRE",     "MinLVL",  itoa(CFG.CAMPFIRE.MinLVL,      szSave, 10), INIFileName);
-        WritePrivateProfileString("CAMPFIRE",     "MaxLVL",  itoa(CFG.CAMPFIRE.MaxLVL,      szSave, 10), INIFileName);
-        WritePrivateProfileString("CAMPFIRE",     "Color",   itohex(CFG.CAMPFIRE.Color,     szSave),     INIFileName);
-        WritePrivateProfileString("BANNER",       "Spawn",   CFG.BANNER.Spawn         ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("BANNER",       "Despawn", CFG.BANNER.Despawn       ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("BANNER",       "MinLVL",  itoa(CFG.BANNER.MinLVL,        szSave, 10), INIFileName);
-        WritePrivateProfileString("BANNER",       "MaxLVL",  itoa(CFG.BANNER.MaxLVL,        szSave, 10), INIFileName);
-        WritePrivateProfileString("BANNER",       "Color",   itohex(CFG.BANNER.Color,       szSave),     INIFileName);
-        WritePrivateProfileString("AURA",         "Spawn",   CFG.AURA.Spawn           ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("AURA",         "Despawn", CFG.AURA.Despawn         ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("AURA",         "MinLVL",  itoa(CFG.AURA.MinLVL,          szSave, 10), INIFileName);
-        WritePrivateProfileString("AURA",         "MaxLVL",  itoa(CFG.AURA.MaxLVL,          szSave, 10), INIFileName);
-        WritePrivateProfileString("AURA",         "Color",   itohex(CFG.AURA.Color,         szSave),     INIFileName);
-        WritePrivateProfileString("OBJECT",       "Spawn",   CFG.OBJECT.Spawn         ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("OBJECT",       "Despawn", CFG.OBJECT.Despawn       ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("OBJECT",       "MinLVL",  itoa(CFG.OBJECT.MinLVL,        szSave, 10), INIFileName);
-        WritePrivateProfileString("OBJECT",       "MaxLVL",  itoa(CFG.OBJECT.MaxLVL,        szSave, 10), INIFileName);
-        WritePrivateProfileString("OBJECT",       "Color",   itohex(CFG.OBJECT.Color,       szSave),     INIFileName);
-        WritePrivateProfileString("UNTARGETABLE", "Spawn",   CFG.UNTARGETABLE.Spawn   ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("UNTARGETABLE", "Despawn", CFG.UNTARGETABLE.Despawn ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("UNTARGETABLE", "MinLVL",  itoa(CFG.UNTARGETABLE.MinLVL,  szSave, 10), INIFileName);
-        WritePrivateProfileString("UNTARGETABLE", "MaxLVL",  itoa(CFG.UNTARGETABLE.MaxLVL,  szSave, 10), INIFileName);
-        WritePrivateProfileString("UNTARGETABLE", "Color",   itohex(CFG.UNTARGETABLE.Color, szSave),     INIFileName);
-        WritePrivateProfileString("CHEST",        "Spawn",   CFG.CHEST.Spawn          ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("CHEST",        "Despawn", CFG.CHEST.Despawn        ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("CHEST",        "MinLVL",  itoa(CFG.CHEST.MinLVL,         szSave, 10), INIFileName);
-        WritePrivateProfileString("CHEST",        "MaxLVL",  itoa(CFG.CHEST.MaxLVL,         szSave, 10), INIFileName);
-        WritePrivateProfileString("CHEST",        "Color",   itohex(CFG.CHEST.Color,        szSave),     INIFileName);
-        WritePrivateProfileString("TRAP",         "Spawn",   CFG.TRAP.Spawn           ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("TRAP",         "Despawn", CFG.TRAP.Despawn         ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("TRAP",         "MinLVL",  itoa(CFG.TRAP.MinLVL,          szSave, 10), INIFileName);
-        WritePrivateProfileString("TRAP",         "MaxLVL",  itoa(CFG.TRAP.MaxLVL,          szSave, 10), INIFileName);
-        WritePrivateProfileString("TRAP",         "Color",   itohex(CFG.TRAP.Color,         szSave),     INIFileName);
-        WritePrivateProfileString("TIMER",        "Spawn",   CFG.TIMER.Spawn          ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("TIMER",        "Despawn", CFG.TIMER.Despawn        ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("TIMER",        "MinLVL",  itoa(CFG.TIMER.MinLVL,         szSave, 10), INIFileName);
-        WritePrivateProfileString("TIMER",        "MaxLVL",  itoa(CFG.TIMER.MaxLVL,         szSave, 10), INIFileName);
-        WritePrivateProfileString("TIMER",        "Color",   itohex(CFG.TIMER.Color,        szSave),     INIFileName);
-        WritePrivateProfileString("TRIGGER",      "Spawn",   CFG.TRIGGER.Spawn        ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("TRIGGER",      "Despawn", CFG.TRIGGER.Despawn      ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("TRIGGER",      "MinLVL",  itoa(CFG.TRIGGER.MinLVL,       szSave, 10), INIFileName);
-        WritePrivateProfileString("TRIGGER",      "MaxLVL",  itoa(CFG.TRIGGER.MaxLVL,       szSave, 10), INIFileName);
-        WritePrivateProfileString("TRIGGER",      "Color",   itohex(CFG.TRIGGER.Color,      szSave),     INIFileName);
-        WritePrivateProfileString("CORPSE",       "Spawn",   CFG.CORPSE.Spawn         ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("CORPSE",       "Despawn", CFG.CORPSE.Despawn       ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("CORPSE",       "MinLVL",  itoa(CFG.CORPSE.MinLVL,        szSave, 10), INIFileName);
-        WritePrivateProfileString("CORPSE",       "MaxLVL",  itoa(CFG.CORPSE.MaxLVL,        szSave, 10), INIFileName);
-        WritePrivateProfileString("CORPSE",       "Color",   itohex(CFG.CORPSE.Color,       szSave),     INIFileName);
-        WritePrivateProfileString("ITEM",         "Spawn",   CFG.ITEM.Spawn           ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("ITEM",         "Despawn", CFG.ITEM.Despawn         ? "on" : "off",    INIFileName);
-        WritePrivateProfileString("ITEM",         "MinLVL",  itoa(CFG.ITEM.MinLVL,          szSave, 10), INIFileName);
-        WritePrivateProfileString("ITEM",         "MaxLVL",  itoa(CFG.ITEM.MaxLVL,          szSave, 10), INIFileName);
-        WritePrivateProfileString("ITEM",         "Color",   itohex(CFG.ITEM.Color,         szSave),     INIFileName);
         WritePrivateProfileString("UNKNOWN",      "Spawn",   CFG.UNKNOWN.Spawn        ? "on" : "off",    INIFileName);
         WritePrivateProfileString("UNKNOWN",      "Despawn", CFG.UNKNOWN.Despawn      ? "on" : "off",    INIFileName);
         WritePrivateProfileString("UNKNOWN",      "MinLVL",  itoa(CFG.UNKNOWN.MinLVL,       szSave, 10), INIFileName);
@@ -462,6 +372,7 @@ void HandleConfig(bool bSave)
         CFG.ALL.MaxLVL = GetPrivateProfileInt("ALL", "MaxLVL", CFG.ALL.MaxLVL, INIFileName);
         GetPrivateProfileString("ALL", "Color", "FFFF00", szLoad, MAX_STRING, INIFileName);
         sscanf(szLoad, "%06X", &CFG.ALL.Color);
+
         GetPrivateProfileString("PC", "Spawn", CFG.PC.Spawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
         CFG.PC.Spawn = (!strnicmp(szLoad, "on", 3));
         GetPrivateProfileString("PC", "Despawn", CFG.PC.Despawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
@@ -470,6 +381,7 @@ void HandleConfig(bool bSave)
         CFG.PC.MaxLVL = GetPrivateProfileInt("PC", "MaxLVL", CFG.PC.MaxLVL, INIFileName);
         GetPrivateProfileString("PC", "Color", "00FF00", szLoad, MAX_STRING, INIFileName);
         sscanf(szLoad, "%06X", &CFG.PC.Color);
+
         GetPrivateProfileString("NPC", "Spawn", CFG.NPC.Spawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
         CFG.NPC.Spawn = (!strnicmp(szLoad, "on", 3));
         GetPrivateProfileString("NPC", "Despawn", CFG.NPC.Despawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
@@ -478,126 +390,7 @@ void HandleConfig(bool bSave)
         CFG.NPC.MaxLVL = GetPrivateProfileInt("NPC", "MaxLVL", CFG.NPC.MaxLVL, INIFileName);
         GetPrivateProfileString("NPC", "Color", "FF0000", szLoad, MAX_STRING, INIFileName);
         sscanf(szLoad, "%06X", &CFG.NPC.Color);
-        GetPrivateProfileString("MOUNT", "Spawn", CFG.MOUNT.Spawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.MOUNT.Spawn = (!strnicmp(szLoad, "on", 3));
-        GetPrivateProfileString("MOUNT", "Despawn", CFG.MOUNT.Despawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.MOUNT.Despawn = (!strnicmp(szLoad, "on", 3));
-        CFG.MOUNT.MinLVL = GetPrivateProfileInt("MOUNT", "MinLVL", CFG.MOUNT.MinLVL, INIFileName);
-        CFG.MOUNT.MaxLVL = GetPrivateProfileInt("MOUNT", "MaxLVL", CFG.MOUNT.MaxLVL, INIFileName);
-        GetPrivateProfileString("MOUNT", "Color", "BEBEBE", szLoad, MAX_STRING, INIFileName);
-        sscanf(szLoad, "%06X", &CFG.MOUNT.Color);
-        GetPrivateProfileString("PET", "Spawn", CFG.PET.Spawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.PET.Spawn = (!strnicmp(szLoad, "on", 3));
-        GetPrivateProfileString("PET", "Despawn", CFG.PET.Despawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.PET.Despawn = (!strnicmp(szLoad, "on", 3));
-        CFG.PET.MinLVL = GetPrivateProfileInt("PET", "MinLVL", CFG.PET.MinLVL, INIFileName);
-        CFG.PET.MaxLVL = GetPrivateProfileInt("PET", "MaxLVL", CFG.PET.MaxLVL, INIFileName);
-        GetPrivateProfileString("PET", "Color", "6B8E23", szLoad, MAX_STRING, INIFileName);
-        sscanf(szLoad, "%06X", &CFG.PET.Color);
-        GetPrivateProfileString("MERCENARY", "Spawn", CFG.MERCENARY.Spawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.MERCENARY.Spawn = (!strnicmp(szLoad, "on", 3));
-        GetPrivateProfileString("MERCENARY", "Despawn", CFG.MERCENARY.Despawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.MERCENARY.Despawn = (!strnicmp(szLoad, "on", 3));
-        CFG.MERCENARY.MinLVL = GetPrivateProfileInt("MERCENARY", "MinLVL", CFG.MERCENARY.MinLVL, INIFileName);
-        CFG.MERCENARY.MaxLVL = GetPrivateProfileInt("MERCENARY", "MaxLVL", CFG.MERCENARY.MaxLVL, INIFileName);
-        GetPrivateProfileString("MERCENARY", "Color", "FFDEAD", szLoad, MAX_STRING, INIFileName);
-        sscanf(szLoad, "%06X", &CFG.MERCENARY.Color);
-        GetPrivateProfileString("FLYER", "Spawn", CFG.FLYER.Spawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.FLYER.Spawn = (!strnicmp(szLoad, "on", 3));
-        GetPrivateProfileString("FLYER", "Despawn", CFG.FLYER.Despawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.FLYER.Despawn = (!strnicmp(szLoad, "on", 3));
-        CFG.FLYER.MinLVL = GetPrivateProfileInt("FLYER", "MinLVL", CFG.FLYER.MinLVL, INIFileName);
-        CFG.FLYER.MaxLVL = GetPrivateProfileInt("FLYER", "MaxLVL", CFG.FLYER.MaxLVL, INIFileName);
-        GetPrivateProfileString("FLYER", "Color", "BEBEBE", szLoad, MAX_STRING, INIFileName);
-        sscanf(szLoad, "%06X", &CFG.FLYER.Color);
-        GetPrivateProfileString("CAMPFIRE", "Spawn", CFG.CAMPFIRE.Spawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.CAMPFIRE.Spawn = (!strnicmp(szLoad, "on", 3));
-        GetPrivateProfileString("CAMPFIRE", "Despawn", CFG.CAMPFIRE.Despawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.CAMPFIRE.Despawn = (!strnicmp(szLoad, "on", 3));
-        CFG.CAMPFIRE.MinLVL = GetPrivateProfileInt("CAMPFIRE", "MinLVL", CFG.CAMPFIRE.MinLVL, INIFileName);
-        CFG.CAMPFIRE.MaxLVL = GetPrivateProfileInt("CAMPFIRE", "MaxLVL", CFG.CAMPFIRE.MaxLVL, INIFileName);
-        GetPrivateProfileString("CAMPFIRE", "Color", "BEBEBE", szLoad, MAX_STRING, INIFileName);
-        sscanf(szLoad, "%06X", &CFG.CAMPFIRE.Color);
-        GetPrivateProfileString("BANNER", "Spawn", CFG.BANNER.Spawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.BANNER.Spawn = (!strnicmp(szLoad, "on", 3));
-        GetPrivateProfileString("BANNER", "Despawn", CFG.BANNER.Despawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.BANNER.Despawn = (!strnicmp(szLoad, "on", 3));
-        CFG.BANNER.MinLVL = GetPrivateProfileInt("BANNER", "MinLVL", CFG.BANNER.MinLVL, INIFileName);
-        CFG.BANNER.MaxLVL = GetPrivateProfileInt("BANNER", "MaxLVL", CFG.BANNER.MaxLVL, INIFileName);
-        GetPrivateProfileString("BANNER", "Color", "BEBEBE", szLoad, MAX_STRING, INIFileName);
-        sscanf(szLoad, "%06X", &CFG.BANNER.Color);
-        GetPrivateProfileString("AURA", "Spawn", CFG.AURA.Spawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.AURA.Spawn = (!strnicmp(szLoad, "on", 3));
-        GetPrivateProfileString("AURA", "Despawn", CFG.AURA.Despawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.AURA.Despawn = (!strnicmp(szLoad, "on", 3));
-        CFG.AURA.MinLVL = GetPrivateProfileInt("AURA", "MinLVL", CFG.AURA.MinLVL, INIFileName);
-        CFG.AURA.MaxLVL = GetPrivateProfileInt("AURA", "MaxLVL", CFG.AURA.MaxLVL, INIFileName);
-        GetPrivateProfileString("AURA", "Color", "BEBEBE", szLoad, MAX_STRING, INIFileName);
-        sscanf(szLoad, "%06X", &CFG.AURA.Color);
-        GetPrivateProfileString("OBJECT", "Spawn", CFG.OBJECT.Spawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.OBJECT.Spawn = (!strnicmp(szLoad, "on", 3));
-        GetPrivateProfileString("OBJECT", "Despawn", CFG.OBJECT.Despawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.OBJECT.Despawn = (!strnicmp(szLoad, "on", 3));
-        CFG.OBJECT.MinLVL = GetPrivateProfileInt("OBJECT", "MinLVL", CFG.OBJECT.MinLVL, INIFileName);
-        CFG.OBJECT.MaxLVL = GetPrivateProfileInt("OBJECT", "MaxLVL", CFG.OBJECT.MaxLVL, INIFileName);
-        GetPrivateProfileString("OBJECT", "Color", "BEBEBE", szLoad, MAX_STRING, INIFileName);
-        sscanf(szLoad, "%06X", &CFG.OBJECT.Color);
-        GetPrivateProfileString("UNTARGETABLE", "Spawn",  CFG.UNTARGETABLE.Spawn   ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.UNTARGETABLE.Spawn = (!strnicmp(szLoad, "on", 3));
-        GetPrivateProfileString("UNTARGETABLE", "Despawn", CFG.UNTARGETABLE.Despawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.UNTARGETABLE.Despawn = (!strnicmp(szLoad, "on", 3));
-        CFG.UNTARGETABLE.MinLVL = GetPrivateProfileInt("UNTARGETABLE", "MinLVL", CFG.UNTARGETABLE.MinLVL, INIFileName);
-        CFG.UNTARGETABLE.MaxLVL = GetPrivateProfileInt("UNTARGETABLE", "MaxLVL", CFG.UNTARGETABLE.MaxLVL, INIFileName);
-        GetPrivateProfileString("UNTARGETABLE", "Color",  "BEBEBE", szLoad, MAX_STRING, INIFileName);
-        sscanf(szLoad, "%06X", &CFG.UNTARGETABLE.Color);
-        GetPrivateProfileString("CHEST", "Spawn", CFG.CHEST.Spawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.CHEST.Spawn = (!strnicmp(szLoad, "on", 3));
-        GetPrivateProfileString("CHEST", "Despawn", CFG.CHEST.Despawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.CHEST.Despawn = (!strnicmp(szLoad, "on", 3));
-        CFG.CHEST.MinLVL = GetPrivateProfileInt("CHEST", "MinLVL", CFG.CHEST.MinLVL, INIFileName);
-        CFG.CHEST.MaxLVL = GetPrivateProfileInt("CHEST", "MaxLVL", CFG.CHEST.MaxLVL, INIFileName);
-        GetPrivateProfileString("CHEST", "Color", "BEBEBE", szLoad, MAX_STRING, INIFileName);
-        sscanf(szLoad, "%06X", &CFG.CHEST.Color);
-        GetPrivateProfileString("TRAP", "Spawn", CFG.TRAP.Spawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.TRAP.Spawn = (!strnicmp(szLoad, "on", 3));
-        GetPrivateProfileString("TRAP", "Despawn", CFG.TRAP.Despawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.TRAP.Despawn = (!strnicmp(szLoad, "on", 3));
-        CFG.TRAP.MinLVL = GetPrivateProfileInt("TRAP", "MinLVL", CFG.TRAP.MinLVL, INIFileName);
-        CFG.TRAP.MaxLVL = GetPrivateProfileInt("TRAP", "MaxLVL", CFG.TRAP.MaxLVL, INIFileName);
-        GetPrivateProfileString("TRAP", "Color", "BEBEBE", szLoad, MAX_STRING, INIFileName);
-        sscanf(szLoad, "%06X", &CFG.TRAP.Color);
-        GetPrivateProfileString("TIMER", "Spawn", CFG.TIMER.Spawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.TIMER.Spawn = (!strnicmp(szLoad, "on", 3));
-        GetPrivateProfileString("TIMER", "Despawn", CFG.TIMER.Despawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.TIMER.Despawn = (!strnicmp(szLoad, "on", 3));
-        CFG.TIMER.MinLVL = GetPrivateProfileInt("TIMER", "MinLVL", CFG.TIMER.MinLVL, INIFileName);
-        CFG.TIMER.MaxLVL = GetPrivateProfileInt("TIMER", "MaxLVL", CFG.TIMER.MaxLVL, INIFileName);
-        GetPrivateProfileString("TIMER", "Color", "BEBEBE", szLoad, MAX_STRING, INIFileName);
-        sscanf(szLoad, "%06X", &CFG.TIMER.Color);
-        GetPrivateProfileString("TRIGGER", "Spawn", CFG.TRIGGER.Spawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.TRIGGER.Spawn = (!strnicmp(szLoad, "on", 3));
-        GetPrivateProfileString("TRIGGER", "Despawn", CFG.TRIGGER.Despawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.TRIGGER.Despawn = (!strnicmp(szLoad, "on", 3));
-        CFG.TRIGGER.MinLVL = GetPrivateProfileInt("TRIGGER", "MinLVL", CFG.TRIGGER.MinLVL, INIFileName);
-        CFG.TRIGGER.MaxLVL = GetPrivateProfileInt("TRIGGER", "MaxLVL", CFG.TRIGGER.MaxLVL, INIFileName);
-        GetPrivateProfileString("TRIGGER", "Color", "BEBEBE", szLoad, MAX_STRING, INIFileName);
-        sscanf(szLoad, "%06X", &CFG.TRIGGER.Color);
-        GetPrivateProfileString("CORPSE", "Spawn", CFG.CORPSE.Spawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.CORPSE.Spawn = (!strnicmp(szLoad, "on", 3));
-        GetPrivateProfileString("CORPSE", "Despawn", CFG.CORPSE.Despawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.CORPSE.Despawn = (!strnicmp(szLoad, "on", 3));
-        CFG.CORPSE.MinLVL = GetPrivateProfileInt("CORPSE", "MinLVL", CFG.CORPSE.MinLVL, INIFileName);
-        CFG.CORPSE.MaxLVL = GetPrivateProfileInt("CORPSE", "MaxLVL", CFG.CORPSE.MaxLVL, INIFileName);
-        GetPrivateProfileString("CORPSE", "Color", "006400", szLoad, MAX_STRING, INIFileName);
-        sscanf(szLoad, "%06X", &CFG.CORPSE.Color);
-        GetPrivateProfileString("ITEM", "Spawn", CFG.ITEM.Spawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.ITEM.Spawn = (!strnicmp(szLoad, "on", 3));
-        GetPrivateProfileString("ITEM", "Despawn", CFG.ITEM.Despawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
-        CFG.ITEM.Despawn = (!strnicmp(szLoad, "on", 3));
-        CFG.ITEM.MinLVL = GetPrivateProfileInt("ITEM", "MinLVL", CFG.ITEM.MinLVL, INIFileName);
-        CFG.ITEM.MaxLVL = GetPrivateProfileInt("ITEM", "MaxLVL", CFG.ITEM.MaxLVL, INIFileName);
-        GetPrivateProfileString("ITEM", "Color", "BEBEBE", szLoad, MAX_STRING, INIFileName);
-        sscanf(szLoad, "%06X", &CFG.ITEM.Color);
+
         GetPrivateProfileString("UNKNOWN", "Spawn", CFG.UNKNOWN.Spawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
         CFG.UNKNOWN.Spawn = (!strnicmp(szLoad, "on", 3));
         GetPrivateProfileString("UNKNOWN", "Despawn", CFG.UNKNOWN.Despawn ? "on" : "off", szLoad, MAX_STRING, INIFileName);
@@ -638,21 +431,6 @@ void WatchState(bool bSpawns)
     {
         WriteChatf("\aw - \ayPC\ax: %s ( \ay%d\ax to \ay%d\ax ) - %06X", (CFG.PC.Despawn ? (CFG.PC.Spawn ? "Spawn & Despawn" : "Despawn Only") : (CFG.PC.Spawn ? "Spawn Only" : "OFF")), CFG.PC.MinLVL, CFG.PC.MaxLVL, CFG.PC.Color);
         WriteChatf("\aw - \ayNPC\ax: %s ( \ay%d\ax to \ay%d\ax ) - %06X", (CFG.NPC.Despawn ? (CFG.NPC.Spawn ? "Spawn & Despawn" : "Despawn Only") : (CFG.NPC.Spawn ? "Spawn Only" : "OFF")), CFG.NPC.MinLVL, CFG.NPC.MaxLVL, CFG.NPC.Color);
-        WriteChatf("\aw - \ayMOUNT\ax: %s ( \ay%d\ax to \ay%d\ax ) - %06X", (CFG.MOUNT.Despawn ? (CFG.MOUNT.Spawn ? "Spawn & Despawn" : "Despawn Only") : (CFG.MOUNT.Spawn ? "Spawn Only" : "OFF")), CFG.MOUNT.MinLVL, CFG.MOUNT.MaxLVL, CFG.MOUNT.Color);
-        WriteChatf("\aw - \ayPET\ax: %s ( \ay%d\ax to \ay%d\ax ) - %06X", (CFG.PET.Despawn ? (CFG.PET.Spawn ? "Spawn & Despawn" : "Despawn Only") : (CFG.PET.Spawn ? "Spawn Only" : "OFF")), CFG.PET.MinLVL, CFG.PET.MaxLVL, CFG.PET.Color);
-        WriteChatf("\aw - \ayMERCENARY\ax: %s ( \ay%d\ax to \ay%d\ax ) - %06X", (CFG.MERCENARY.Despawn ? (CFG.MERCENARY.Spawn ? "Spawn & Despawn" : "Despawn Only") : (CFG.MERCENARY.Spawn ? "Spawn Only" : "OFF")), CFG.MERCENARY.MinLVL, CFG.MERCENARY.MaxLVL, CFG.MERCENARY.Color);
-        WriteChatf("\aw - \ayCORPSE\ax: %s ( \ay%d\ax to \ay%d\ax ) - %06X", (CFG.CORPSE.Despawn ? (CFG.CORPSE.Spawn ? "Spawn & Despawn" : "Despawn Only") : (CFG.CORPSE.Spawn ? "Spawn Only" : "OFF")), CFG.CORPSE.MinLVL, CFG.CORPSE.MaxLVL, CFG.CORPSE.Color);
-        WriteChatf("\aw - \ayFLYER\ax: %s ( \ay%d\ax to \ay%d\ax ) - %06X", (CFG.FLYER.Despawn ? (CFG.FLYER.Spawn ? "Spawn & Despawn" : "Despawn Only") : (CFG.FLYER.Spawn ? "Spawn Only" : "OFF")), CFG.FLYER.MinLVL, CFG.FLYER.MaxLVL, CFG.FLYER.Color);
-        WriteChatf("\aw - \ayCAMPFIRE\ax: %s ( \ay%d\ax to \ay%d\ax ) - %06X", (CFG.CAMPFIRE.Despawn ? (CFG.CAMPFIRE.Spawn ? "Spawn & Despawn" : "Despawn Only") : (CFG.CAMPFIRE.Spawn ? "Spawn Only" : "OFF")), CFG.CAMPFIRE.MinLVL, CFG.CAMPFIRE.MaxLVL, CFG.CAMPFIRE.Color);
-        WriteChatf("\aw - \ayBANNER\ax: %s ( \ay%d\ax to \ay%d\ax ) - %06X", (CFG.BANNER.Despawn ? (CFG.BANNER.Spawn ? "Spawn & Despawn" : "Despawn Only") : (CFG.BANNER.Spawn ? "Spawn Only" : "OFF")), CFG.BANNER.MinLVL, CFG.BANNER.MaxLVL, CFG.BANNER.Color);
-        WriteChatf("\aw - \ayAURA\ax: %s ( \ay%d\ax to \ay%d\ax ) - %06X", (CFG.AURA.Despawn ? (CFG.AURA.Spawn ? "Spawn & Despawn" : "Despawn Only") : (CFG.AURA.Spawn ? "Spawn Only" : "OFF")), CFG.AURA.MinLVL, CFG.AURA.MaxLVL, CFG.AURA.Color);
-        WriteChatf("\aw - \ayOBJECT\ax: %s ( \ay%d\ax to \ay%d\ax ) - %06X", (CFG.OBJECT.Despawn ? (CFG.OBJECT.Spawn ? "Spawn & Despawn" : "Despawn Only") : (CFG.OBJECT.Spawn ? "Spawn Only" : "OFF")), CFG.OBJECT.MinLVL, CFG.OBJECT.MaxLVL, CFG.OBJECT.Color);
-        WriteChatf("\aw - \ayUNTARGETABLE\ax: %s ( \ay%d\ax to \ay%d\ax ) - %06X", (CFG.UNTARGETABLE.Despawn ? (CFG.UNTARGETABLE.Spawn ? "Spawn & Despawn" : "Despawn Only") : (CFG.UNTARGETABLE.Spawn ? "Spawn Only" : "OFF")), CFG.UNTARGETABLE.MinLVL, CFG.UNTARGETABLE.MaxLVL, CFG.UNTARGETABLE.Color);
-        WriteChatf("\aw - \ayCHEST\ax: %s ( \ay%d\ax to \ay%d\ax ) - %06X", (CFG.CHEST.Despawn ? (CFG.CHEST.Spawn ? "Spawn & Despawn" : "Despawn Only") : (CFG.CHEST.Spawn ? "Spawn Only" : "OFF")), CFG.CHEST.MinLVL, CFG.CHEST.MaxLVL, CFG.CHEST.Color);
-        WriteChatf("\aw - \ayTRAP\ax: %s ( \ay%d\ax to \ay%d\ax ) - %06X", (CFG.TRAP.Despawn ? (CFG.TRAP.Spawn ? "Spawn & Despawn" : "Despawn Only") : (CFG.TRAP.Spawn ? "Spawn Only" : "OFF")), CFG.TRAP.MinLVL, CFG.TRAP.MaxLVL, CFG.TRAP.Color);
-        WriteChatf("\aw - \ayTIMER\ax: %s ( \ay%d\ax to \ay%d\ax ) - %06X", (CFG.TIMER.Despawn ? (CFG.TIMER.Spawn ? "Spawn & Despawn" : "Despawn Only") : (CFG.TIMER.Spawn ? "Spawn Only" : "OFF")), CFG.TIMER.MinLVL, CFG.TIMER.MaxLVL, CFG.TIMER.Color);
-        WriteChatf("\aw - \ayTRIGGER\ax: %s ( \ay%d\ax to \ay%d\ax ) - %06X", (CFG.TRIGGER.Despawn ? (CFG.TRIGGER.Spawn ? "Spawn & Despawn" : "Despawn Only") : (CFG.TRIGGER.Spawn ? "Spawn Only" : "OFF")), CFG.TRIGGER.MinLVL, CFG.TRIGGER.MaxLVL, CFG.TRIGGER.Color);
-        WriteChatf("\aw - \ayITEM\ax: %s ( \ay%d\ax to \ay%d\ax ) - %06X", (CFG.ITEM.Despawn ? (CFG.ITEM.Spawn ? "Spawn & Despawn" : "Despawn Only") : (CFG.ITEM.Spawn ? "Spawn Only" : "OFF")), CFG.ITEM.MinLVL, CFG.ITEM.MaxLVL, CFG.ITEM.Color);
         WriteChatf("\aw - \ayUNKNOWN\ax: %s ( \ay%d\ax to \ay%d\ax ) - %06X", (CFG.UNKNOWN.Despawn ? (CFG.UNKNOWN.Spawn ? "Spawn & Despawn" : "Despawn Only") : (CFG.UNKNOWN.Spawn ? "Spawn Only" : "OFF")), CFG.UNKNOWN.MinLVL, CFG.UNKNOWN.MaxLVL, CFG.UNKNOWN.Color);
         WriteChatf("\aw - \ayALL\ax: %s ( \ay%d\ax to \ay%d\ax ) - %06X", (CFG.ALL.Despawn ? (CFG.ALL.Spawn ? "Spawn & Despawn" : "Despawn Only") : (CFG.ALL.Spawn ? "Spawn Only" : "OFF")), CFG.ALL.MinLVL, CFG.ALL.MaxLVL, CFG.ALL.Color);
     }
@@ -923,351 +701,6 @@ void WatchSpawns(PSPAWNINFO pLPlayer, char* szLine)
             WriteChatf("\ay%s\aw:: \arInvalid parameter. Use \ag/spawn help\ax.", MODULE_NAME);
         }
     }
-    else if (!strnicmp(szArg1, "mount", 6))
-    {
-        switch(ucArgType)
-        {
-        case ARG_SPAWN:
-            ToggleSetting("MOUNT spawn", &CFG.MOUNT.Spawn);
-            break;
-        case ARG_DESPAWN:
-            ToggleSetting("MOUNT despawn", &CFG.MOUNT.Despawn);
-            break;
-        case ARG_MINLVL:
-            SetSpawnLevel("MOUNT min level", &CFG.MOUNT.MinLVL, iNewLevel);
-            break;
-        case ARG_MAXLVL:
-            SetSpawnLevel("MOUNT max level", &CFG.MOUNT.MaxLVL, iNewLevel);
-            break;
-        case ARG_COLOR:
-            SetSpawnColor("MOUNT color", &CFG.MOUNT.Color, ulNewColor);
-            break;
-        default:
-            WriteChatf("\ay%s\aw:: \arInvalid parameter. Use \ag/spawn help\ax.", MODULE_NAME);
-        }
-    }
-    else if (!strnicmp(szArg1, "pet", 4))
-    {
-        switch(ucArgType)
-        {
-        case ARG_SPAWN:
-            ToggleSetting("PET spawn", &CFG.PET.Spawn);
-            break;
-        case ARG_DESPAWN:
-            ToggleSetting("PET despawn", &CFG.PET.Despawn);
-            break;
-        case ARG_MINLVL:
-            SetSpawnLevel("PET min level", &CFG.PET.MinLVL, iNewLevel);
-            break;
-        case ARG_MAXLVL:
-            SetSpawnLevel("PET max level", &CFG.PET.MaxLVL, iNewLevel);
-            break;
-        case ARG_COLOR:
-            SetSpawnColor("PET color", &CFG.PET.Color, ulNewColor);
-            break;
-        default:
-            WriteChatf("\ay%s\aw:: \arInvalid parameter. Use \ag/spawn help\ax.", MODULE_NAME);
-        }
-    }
-    else if (!strnicmp(szArg1, "merc", 5))
-    {
-        switch(ucArgType)
-        {
-        case ARG_SPAWN:
-            ToggleSetting("MERCENARY spawn", &CFG.MERCENARY.Spawn);
-            break;
-        case ARG_DESPAWN:
-            ToggleSetting("MERCENARY despawn", &CFG.MERCENARY.Despawn);
-            break;
-        case ARG_MINLVL:
-            SetSpawnLevel("MERCENARY min level", &CFG.MERCENARY.MinLVL, iNewLevel);
-            break;
-        case ARG_MAXLVL:
-            SetSpawnLevel("MERCENARY max level", &CFG.MERCENARY.MaxLVL, iNewLevel);
-            break;
-        case ARG_COLOR:
-            SetSpawnColor("MERCENARY color", &CFG.MERCENARY.Color, ulNewColor);
-            break;
-        default:
-            WriteChatf("\ay%s\aw:: \arInvalid parameter. Use \ag/spawn help\ax.", MODULE_NAME);
-        }
-    }
-    else if (!strnicmp(szArg1, "flyer", 6))
-    {
-        switch(ucArgType)
-        {
-        case ARG_SPAWN:
-            ToggleSetting("FLYER spawn", &CFG.FLYER.Spawn);
-            break;
-        case ARG_DESPAWN:
-            ToggleSetting("FLYER despawn", &CFG.FLYER.Despawn);
-            break;
-        case ARG_MINLVL:
-            SetSpawnLevel("FLYER min level", &CFG.FLYER.MinLVL, iNewLevel);
-            break;
-        case ARG_MAXLVL:
-            SetSpawnLevel("FLYER max level", &CFG.FLYER.MaxLVL, iNewLevel);
-            break;
-        case ARG_COLOR:
-            SetSpawnColor("FLYER color", &CFG.FLYER.Color, ulNewColor);
-            break;
-        default:
-            WriteChatf("\ay%s\aw:: \arInvalid parameter. Use \ag/spawn help\ax.", MODULE_NAME);
-        }
-    }
-    else if (!strnicmp(szArg1, "campfire", 9))
-    {
-        switch(ucArgType)
-        {
-        case ARG_SPAWN:
-            ToggleSetting("CAMPFIRE spawn", &CFG.CAMPFIRE.Spawn);
-            break;
-        case ARG_DESPAWN:
-            ToggleSetting("CAMPFIRE despawn", &CFG.CAMPFIRE.Despawn);
-            break;
-        case ARG_MINLVL:
-            SetSpawnLevel("CAMPFIRE min level", &CFG.CAMPFIRE.MinLVL, iNewLevel);
-            break;
-        case ARG_MAXLVL:
-            SetSpawnLevel("CAMPFIRE max level", &CFG.CAMPFIRE.MaxLVL, iNewLevel);
-            break;
-        case ARG_COLOR:
-            SetSpawnColor("CAMPFIRE color", &CFG.CAMPFIRE.Color, ulNewColor);
-            break;
-        default:
-            WriteChatf("\ay%s\aw:: \arInvalid parameter. Use \ag/spawn help\ax.", MODULE_NAME);
-        }
-    }
-    else if (!strnicmp(szArg1, "banner", 7))
-    {
-        switch(ucArgType)
-        {
-        case ARG_SPAWN:
-            ToggleSetting("BANNER spawn", &CFG.BANNER.Spawn);
-            break;
-        case ARG_DESPAWN:
-            ToggleSetting("BANNER despawn", &CFG.BANNER.Despawn);
-            break;
-        case ARG_MINLVL:
-            SetSpawnLevel("BANNER min level", &CFG.BANNER.MinLVL, iNewLevel);
-            break;
-        case ARG_MAXLVL:
-            SetSpawnLevel("BANNER max level", &CFG.BANNER.MaxLVL, iNewLevel);
-            break;
-        case ARG_COLOR:
-            SetSpawnColor("BANNER color", &CFG.BANNER.Color, ulNewColor);
-            break;
-        default:
-            WriteChatf("\ay%s\aw:: \arInvalid parameter. Use \ag/spawn help\ax.", MODULE_NAME);
-        }
-    }
-    else if (!strnicmp(szArg1, "aura", 5))
-    {
-        switch(ucArgType)
-        {
-        case ARG_SPAWN:
-            ToggleSetting("AURA spawn", &CFG.AURA.Spawn);
-            break;
-        case ARG_DESPAWN:
-            ToggleSetting("AURA despawn", &CFG.AURA.Despawn);
-            break;
-        case ARG_MINLVL:
-            SetSpawnLevel("AURA min level", &CFG.AURA.MinLVL, iNewLevel);
-            break;
-        case ARG_MAXLVL:
-            SetSpawnLevel("AURA max level", &CFG.AURA.MaxLVL, iNewLevel);
-            break;
-        case ARG_COLOR:
-            SetSpawnColor("AURA color", &CFG.AURA.Color, ulNewColor);
-            break;
-        default:
-            WriteChatf("\ay%s\aw:: \arInvalid parameter. Use \ag/spawn help\ax.", MODULE_NAME);
-        }
-    }
-    else if (!strnicmp(szArg1, "object", 7))
-    {
-        switch(ucArgType)
-        {
-        case ARG_SPAWN:
-            ToggleSetting("OBJECT spawn", &CFG.OBJECT.Spawn);
-            break;
-        case ARG_DESPAWN:
-            ToggleSetting("OBJECT despawn", &CFG.OBJECT.Despawn);
-            break;
-        case ARG_MINLVL:
-            SetSpawnLevel("OBJECT min level", &CFG.OBJECT.MinLVL, iNewLevel);
-            break;
-        case ARG_MAXLVL:
-            SetSpawnLevel("OBJECT max level", &CFG.OBJECT.MaxLVL, iNewLevel);
-            break;
-        case ARG_COLOR:
-            SetSpawnColor("OBJECT color", &CFG.OBJECT.Color, ulNewColor);
-            break;
-        default:
-            WriteChatf("\ay%s\aw:: \arInvalid parameter. Use \ag/spawn help\ax.", MODULE_NAME);
-        }
-    }
-    else if (!strnicmp(szArg1, "untargetable", 14))
-    {
-        switch(ucArgType)
-        {
-        case ARG_SPAWN:
-            ToggleSetting("UNTARGETABLE spawn", &CFG.UNTARGETABLE.Spawn);
-            break;
-        case ARG_DESPAWN:
-            ToggleSetting("UNTARGETABLE despawn", &CFG.UNTARGETABLE.Despawn);
-            break;
-        case ARG_MINLVL:
-            SetSpawnLevel("UNTARGETABLE min level", &CFG.UNTARGETABLE.MinLVL, iNewLevel);
-            break;
-        case ARG_MAXLVL:
-            SetSpawnLevel("UNTARGETABLE max level", &CFG.UNTARGETABLE.MaxLVL, iNewLevel);
-            break;
-        case ARG_COLOR:
-            SetSpawnColor("UNTARGETABLE color", &CFG.UNTARGETABLE.Color, ulNewColor);
-            break;
-        default:
-            WriteChatf("\ay%s\aw:: \arInvalid parameter. Use \ag/spawn help\ax.", MODULE_NAME);
-        }
-    }
-    else if (!strnicmp(szArg1, "chest", 6))
-    {
-        switch(ucArgType)
-        {
-        case ARG_SPAWN:
-            ToggleSetting("CHEST spawn", &CFG.CHEST.Spawn);
-            break;
-        case ARG_DESPAWN:
-            ToggleSetting("CHEST despawn", &CFG.CHEST.Despawn);
-            break;
-        case ARG_MINLVL:
-            SetSpawnLevel("CHEST min level", &CFG.CHEST.MinLVL, iNewLevel);
-            break;
-        case ARG_MAXLVL:
-            SetSpawnLevel("CHEST max level", &CFG.CHEST.MaxLVL, iNewLevel);
-            break;
-        case ARG_COLOR:
-            SetSpawnColor("CHEST color", &CFG.CHEST.Color, ulNewColor);
-            break;
-        default:
-            WriteChatf("\ay%s\aw:: \arInvalid parameter. Use \ag/spawn help\ax.", MODULE_NAME);
-        }
-    }
-    else if (!strnicmp(szArg1, "trap", 5))
-    {
-        switch(ucArgType)
-        {
-        case ARG_SPAWN:
-            ToggleSetting("TRAP spawn", &CFG.TRAP.Spawn);
-            break;
-        case ARG_DESPAWN:
-            ToggleSetting("TRAP despawn", &CFG.TRAP.Despawn);
-            break;
-        case ARG_MINLVL:
-            SetSpawnLevel("TRAP min level", &CFG.TRAP.MinLVL, iNewLevel);
-            break;
-        case ARG_MAXLVL:
-            SetSpawnLevel("TRAP max level", &CFG.TRAP.MaxLVL, iNewLevel);
-            break;
-        case ARG_COLOR:
-            SetSpawnColor("TRAP color", &CFG.TRAP.Color, ulNewColor);
-            break;
-        default:
-            WriteChatf("\ay%s\aw:: \arInvalid parameter. Use \ag/spawn help\ax.", MODULE_NAME);
-        }
-    }
-    else if (!strnicmp(szArg1, "timer", 6))
-    {
-        switch(ucArgType)
-        {
-        case ARG_SPAWN:
-            ToggleSetting("TIMER spawn", &CFG.TIMER.Spawn);
-            break;
-        case ARG_DESPAWN:
-            ToggleSetting("TIMER despawn", &CFG.TIMER.Despawn);
-            break;
-        case ARG_MINLVL:
-            SetSpawnLevel("TIMER min level", &CFG.TIMER.MinLVL, iNewLevel);
-            break;
-        case ARG_MAXLVL:
-            SetSpawnLevel("TIMER max level", &CFG.TIMER.MaxLVL, iNewLevel);
-            break;
-        case ARG_COLOR:
-            SetSpawnColor("TIMER color", &CFG.TIMER.Color, ulNewColor);
-            break;
-        default:
-            WriteChatf("\ay%s\aw:: \arInvalid parameter. Use \ag/spawn help\ax.", MODULE_NAME);
-        }
-    }
-    else if (!strnicmp(szArg1, "trigger", 8))
-    {
-        switch(ucArgType)
-        {
-        case ARG_SPAWN:
-            ToggleSetting("TRIGGER spawn", &CFG.TRIGGER.Spawn);
-            break;
-        case ARG_DESPAWN:
-            ToggleSetting("TRIGGER despawn", &CFG.TRIGGER.Despawn);
-            break;
-        case ARG_MINLVL:
-            SetSpawnLevel("TRIGGER min level", &CFG.TRIGGER.MinLVL, iNewLevel);
-            break;
-        case ARG_MAXLVL:
-            SetSpawnLevel("TRIGGER max level", &CFG.TRIGGER.MaxLVL, iNewLevel);
-            break;
-        case ARG_COLOR:
-            SetSpawnColor("TRIGGER color", &CFG.TRIGGER.Color, ulNewColor);
-            break;
-        default:
-            WriteChatf("\ay%s\aw:: \arInvalid parameter. Use \ag/spawn help\ax.", MODULE_NAME);
-        }
-    }
-    else if (!strnicmp(szArg1, "corpse", 7))
-    {
-        switch(ucArgType)
-        {
-        case ARG_SPAWN:
-            ToggleSetting("CORPSE spawn", &CFG.CORPSE.Spawn);
-            break;
-        case ARG_DESPAWN:
-            ToggleSetting("CORPSE despawn", &CFG.CORPSE.Despawn);
-            break;
-        case ARG_MINLVL:
-            SetSpawnLevel("CORPSE min level", &CFG.CORPSE.MinLVL, iNewLevel);
-            break;
-        case ARG_MAXLVL:
-            SetSpawnLevel("CORPSE max level", &CFG.CORPSE.MaxLVL, iNewLevel);
-            break;
-        case ARG_COLOR:
-            SetSpawnColor("CORPSE color", &CFG.CORPSE.Color, ulNewColor);
-            break;
-        default:
-            WriteChatf("\ay%s\aw:: \arInvalid parameter. Use \ag/spawn help\ax.", MODULE_NAME);
-        }
-    }
-    else if (!strnicmp(szArg1, "item", 5))
-    {
-        switch(ucArgType)
-        {
-        case ARG_SPAWN:
-            ToggleSetting("ITEM spawn", &CFG.ITEM.Spawn);
-            break;
-        case ARG_DESPAWN:
-            ToggleSetting("ITEM despawn", &CFG.ITEM.Despawn);
-            break;
-        case ARG_MINLVL:
-            SetSpawnLevel("ITEM min level", &CFG.ITEM.MinLVL, iNewLevel);
-            break;
-        case ARG_MAXLVL:
-            SetSpawnLevel("ITEM max level", &CFG.ITEM.MaxLVL, iNewLevel);
-            break;
-        case ARG_COLOR:
-            SetSpawnColor("ITEM color", &CFG.ITEM.Color, ulNewColor);
-            break;
-        default:
-            WriteChatf("\ay%s\aw:: \arInvalid parameter. Use \ag/spawn help\ax.", MODULE_NAME);
-        }
-    }
     else if (!strnicmp(szArg1, "unknown", 7))
     {
         switch(ucArgType)
@@ -1388,66 +821,6 @@ void ToggleSpawns(PSPAWNINFO pLPlayer, char* szLine)
     {
         WatchSpawns(pLPlayer, "npc spawn");
     }
-    else if (!strnicmp(szArg1, "mount", 6))
-    {
-        WatchSpawns(pLPlayer, "mount spawn");
-    }
-    else if (!strnicmp(szArg1, "pet", 4))
-    {
-        WatchSpawns(pLPlayer, "pet spawn");
-    }
-    else if (!strnicmp(szArg1, "merc", 5))
-    {
-        WatchSpawns(pLPlayer, "merc spawn");
-    }
-    else if (!strnicmp(szArg1, "flyer", 6))
-    {
-        WatchSpawns(pLPlayer, "flyer spawn");
-    }
-    else if (!strnicmp(szArg1, "campfire", 9))
-    {
-        WatchSpawns(pLPlayer, "campfire spawn");
-    }
-    else if (!strnicmp(szArg1, "banner", 7))
-    {
-        WatchSpawns(pLPlayer, "banner spawn");
-    }
-    else if (!strnicmp(szArg1, "aura", 5))
-    {
-        WatchSpawns(pLPlayer, "aura spawn");
-    }
-    else if (!strnicmp(szArg1, "object", 7))
-    {
-        WatchSpawns(pLPlayer, "object spawn");
-    }
-    else if (!strnicmp(szArg1, "untargetable", 14))
-    {
-        WatchSpawns(pLPlayer, "untargetable spawn");
-    }
-    else if (!strnicmp(szArg1, "chest", 6))
-    {
-        WatchSpawns(pLPlayer, "chest spawn");
-    }
-    else if (!strnicmp(szArg1, "trap", 5))
-    {
-        WatchSpawns(pLPlayer, "trap spawn");
-    }
-    else if (!strnicmp(szArg1, "timer", 6))
-    {
-        WatchSpawns(pLPlayer, "timer spawn");
-    }
-    else if (!strnicmp(szArg1, "trigger", 8))
-    {
-        WatchSpawns(pLPlayer, "trigger spawn");
-    }
-    else if (!strnicmp(szArg1, "corpse", 7))
-    {
-        WatchSpawns(pLPlayer, "corpse spawn");
-    }
-    else if (!strnicmp(szArg1, "item", 5))
-    {
-        WatchSpawns(pLPlayer, "item spawn");
-    }
     else if (!strnicmp(szArg1, "unknown", 7))
     {
         WatchSpawns(pLPlayer, "unknown spawn");
@@ -1474,66 +847,6 @@ void ToggleDespawns(PSPAWNINFO pLPlayer, char* szLine)
     else if (!strnicmp(szArg1, "npc", 4))
     {
         WatchSpawns(pLPlayer, "npc despawn");
-    }
-    else if (!strnicmp(szArg1, "mount", 6))
-    {
-        WatchSpawns(pLPlayer, "mount despawn");
-    }
-    else if (!strnicmp(szArg1, "pet", 4))
-    {
-        WatchSpawns(pLPlayer, "pet despawn");
-    }
-    else if (!strnicmp(szArg1, "merc", 5))
-    {
-        WatchSpawns(pLPlayer, "merc despawn");
-    }
-    else if (!strnicmp(szArg1, "flyer", 6))
-    {
-        WatchSpawns(pLPlayer, "flyer despawn");
-    }
-    else if (!strnicmp(szArg1, "campfire", 9))
-    {
-        WatchSpawns(pLPlayer, "campfire despawn");
-    }
-    else if (!strnicmp(szArg1, "banner", 7))
-    {
-        WatchSpawns(pLPlayer, "banner despawn");
-    }
-    else if (!strnicmp(szArg1, "aura", 5))
-    {
-        WatchSpawns(pLPlayer, "aura despawn");
-    }
-    else if (!strnicmp(szArg1, "object", 7))
-    {
-        WatchSpawns(pLPlayer, "object despawn");
-    }
-    else if (!strnicmp(szArg1, "untargetable", 14))
-    {
-        WatchSpawns(pLPlayer, "untargetable despawn");
-    }
-    else if (!strnicmp(szArg1, "chest", 6))
-    {
-        WatchSpawns(pLPlayer, "chest despawn");
-    }
-    else if (!strnicmp(szArg1, "trap", 5))
-    {
-        WatchSpawns(pLPlayer, "trap despawn");
-    }
-    else if (!strnicmp(szArg1, "timer", 6))
-    {
-        WatchSpawns(pLPlayer, "timer despawn");
-    }
-    else if (!strnicmp(szArg1, "trigger", 8))
-    {
-        WatchSpawns(pLPlayer, "trigger despawn");
-    }
-    else if (!strnicmp(szArg1, "corpse", 7))
-    {
-        WatchSpawns(pLPlayer, "corpse despawn");
-    }
-    else if (!strnicmp(szArg1, "item", 5))
-    {
-        WatchSpawns(pLPlayer, "item despawn");
     }
     else if (!strnicmp(szArg1, "unknown", 7))
     {
@@ -1579,7 +892,7 @@ void WriteSpawn(PSPAWNINFO pFormatSpawn, char* szTypeString, char* szLocString, 
     strcat(szColoredSpawn, szProcessTemp);
 
     // added logging function 2010-09-04
-    if (bLogActive && bLogReady)
+    if (bLogReady)
     {
         char szLogOut[MAX_STRING] = {0};
         sprintf(szLogOut, "%s: [ %d, %s, %s ] < %s > ( %s ) ( id %d ) %s", bSpawn ? "SPAWNED" : "DESPAWN", pFormatSpawn->Level, pEverQuest->GetRaceDesc(pFormatSpawn->Race), GetClassDesc(pFormatSpawn->Class), pFormatSpawn->DisplayedName, szTypeString, pFormatSpawn->SpawnID, szLocString);
@@ -1689,86 +1002,10 @@ void CheckOurType(PSPAWNINFO pNewSpawn, bool bSpawn)
         if (!SpawnFormat) return;
         sprintf(szType, "PC");
         break;
-    case MOUNT:
-        SpawnFormat = IsTypeOn(&CFG.MOUNT, bSpawn);
-        if (!SpawnFormat) return;
-        sprintf(szType, "MOUNT");
-        break;
-    case PET:
-        SpawnFormat = IsTypeOn(&CFG.PET, bSpawn);
-        if (!SpawnFormat) return;
-        sprintf(szType, "PET");
-        break;
-    case MERCENARY:
-        SpawnFormat = IsTypeOn(&CFG.MERCENARY, bSpawn);
-        if (!SpawnFormat) return;
-        sprintf(szType, "MERCENARY");
-        break;
-    case FLYER:
-        SpawnFormat = IsTypeOn(&CFG.FLYER, bSpawn);
-        if (!SpawnFormat) return;
-        sprintf(szSpawnLoc, "INVALID");
-        sprintf(szType, "FLYER");
-        break;
     case NPC:
         SpawnFormat = IsTypeOn(&CFG.NPC, bSpawn);
         if (!SpawnFormat) return;
         sprintf(szType, "NPC");
-        break;
-    case CAMPFIRE:
-        SpawnFormat = IsTypeOn(&CFG.CAMPFIRE, bSpawn);
-        if (!SpawnFormat) return;
-        sprintf(szType, "CAMPFIRE");
-        break;
-    case BANNER:
-        SpawnFormat = IsTypeOn(&CFG.BANNER, bSpawn);
-        if (!SpawnFormat) return;
-        sprintf(szType, "GUILDBANNER");
-        break;
-    case AURA:
-        SpawnFormat = IsTypeOn(&CFG.AURA, bSpawn);
-        if (!SpawnFormat) return;
-        sprintf(szType, "AURA");
-        break;
-    case OBJECT:
-        SpawnFormat = IsTypeOn(&CFG.OBJECT, bSpawn);
-        if (!SpawnFormat) return;
-        sprintf(szType, "OBJECT");
-        break;
-    case UNTARGETABLE:
-        SpawnFormat = IsTypeOn(&CFG.UNTARGETABLE, bSpawn);
-        if (!SpawnFormat) return;
-        sprintf(szType, "UNTARGETABLE");
-        break;
-    case CHEST:
-        SpawnFormat = IsTypeOn(&CFG.CHEST, bSpawn);
-        if (!SpawnFormat) return;
-        sprintf(szType, "CHEST");
-        break;
-    case TRAP:
-        SpawnFormat = IsTypeOn(&CFG.TRAP, bSpawn);
-        if (!SpawnFormat) return;
-        sprintf(szType, "TRAP");
-        break;
-    case TIMER:
-        SpawnFormat = IsTypeOn(&CFG.TIMER, bSpawn);
-        if (!SpawnFormat) return;
-        sprintf(szType, "TIMER");
-        break;
-    case TRIGGER:
-        SpawnFormat = IsTypeOn(&CFG.TRIGGER, bSpawn);
-        if (!SpawnFormat) return;
-        sprintf(szType, "TRIGGER");
-        break;
-    case CORPSE:
-        SpawnFormat = IsTypeOn(&CFG.CORPSE, bSpawn);
-        if (!SpawnFormat) return;
-        sprintf(szType, "CORPSE");
-        break;
-    case ITEM:
-        SpawnFormat = IsTypeOn(&CFG.ITEM, bSpawn);
-        if (!SpawnFormat) return;
-        sprintf(szType, "ITEM");
         break;
     default:
         SpawnFormat = IsTypeOn(&CFG.UNKNOWN, bSpawn);
@@ -1824,12 +1061,7 @@ PLUGIN_API void SetGameState(unsigned long ulGameState)
         tSeconds = time(NULL);
         bZoning = false;
 
-        if (CFG.Logging || bLogCmdUsed) bLogActive = true;
-
-        if (bLogActive)
-        {
-            StartLog();
-        }
+        StartLog();
     }
     else
     {
@@ -1842,7 +1074,7 @@ PLUGIN_API void SetGameState(unsigned long ulGameState)
         {
             KillOurWnd(false);
         }
-        if (bLogActive) EndLog();
+        EndLog();
     }
 }
 
@@ -1870,9 +1102,9 @@ PLUGIN_API void OnPulse()
 
 PLUGIN_API void InitializePlugin()
 {
-     AddCommand("/spawn", WatchSpawns);
+     /*AddCommand("/spawn", WatchSpawns);
      AddCommand("/spwn",  ToggleSpawns);
-     AddCommand("/dspwn", ToggleDespawns);
+     AddCommand("/dspwn", ToggleDespawns);*/
     tSeconds = time(NULL);
     HandleConfig(false);
     bLoaded = true;
@@ -1880,10 +1112,10 @@ PLUGIN_API void InitializePlugin()
 
 PLUGIN_API void ShutdownPlugin()
 {
-     RemoveCommand("/spawn");
+     /*RemoveCommand("/spawn");
      RemoveCommand("/spwn");
-     RemoveCommand("/dspwn");
-    if (bLogActive) EndLog();
+     RemoveCommand("/dspwn");*/
+    EndLog();
     HandleConfig(true);
     KillOurWnd(false);
 }
