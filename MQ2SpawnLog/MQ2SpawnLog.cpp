@@ -860,7 +860,7 @@ void ToggleDespawns(PSPAWNINFO pLPlayer, char* szLine)
 
 void WriteSpawn(PSPAWNINFO pFormatSpawn, char* szTypeString, char* szLocString, bool bSpawn)
 {
-    if (!OurWnd) return;
+    /*if (!OurWnd) return;*/
 
     char szFinalOutput[MAX_STRING] = {0};
     char szColoredSpawn[MAX_STRING] = {0};
@@ -870,11 +870,11 @@ void WriteSpawn(PSPAWNINFO pFormatSpawn, char* szTypeString, char* szLocString, 
     char szProcessTemp[MAX_STRING] = {0};
     char szProcessTemp2[MAX_STRING] = {0};
 
-    bool bScrollDown = (OurWnd->OutWnd->VScrollPos == OurWnd->OutWnd->VScrollMax) ? true : false;
-    unsigned long ulColor = SpawnFormat->Color;
+    /*bool bScrollDown = (OurWnd->OutWnd->VScrollPos == OurWnd->OutWnd->VScrollMax) ? true : false;
+    unsigned long ulColor = SpawnFormat->Color;*/
 
     //sprintf(szColoredSpawn, "[<c \"#%06X\"> %d %s %s</c> ] <<c \"#%06X\"> %s </c>> (<c \"#%06X\">%s</c>)", ulColor, pFormatSpawn->Level, pEverQuest->GetRaceDesc(pFormatSpawn->Race), GetClassDesc(pFormatSpawn->Class), ulColor, pFormatSpawn->DisplayedName, ulColor, szTypeString);
-    MQToSTML("[ ", szProcessTemp);
+    /*MQToSTML("[ ", szProcessTemp);
     strcat(szColoredSpawn, szProcessTemp);
     sprintf(szProcessTemp, "%d %s %s", pFormatSpawn->Level, pEverQuest->GetRaceDesc(pFormatSpawn->Race), GetClassDesc(pFormatSpawn->Class));
     MQToSTML(szProcessTemp, szProcessTemp2, MAX_STRING, ulColor);
@@ -889,7 +889,7 @@ void WriteSpawn(PSPAWNINFO pFormatSpawn, char* szTypeString, char* szLocString, 
     MQToSTML(szTypeString, szProcessTemp, MAX_STRING, ulColor);
     strcat(szColoredSpawn, szProcessTemp);
     MQToSTML(")", szProcessTemp);
-    strcat(szColoredSpawn, szProcessTemp);
+    strcat(szColoredSpawn, szProcessTemp);*/
 
     // added logging function 2010-09-04
     if (bLogReady)
@@ -903,17 +903,17 @@ void WriteSpawn(PSPAWNINFO pFormatSpawn, char* szTypeString, char* szLocString, 
     if (bSpawn)
     {
         //sprintf(szStringStart, "<c \"#FF0000\">SPAWNED:</c>"); // red
-        sprintf(szProcessTemp, "SPAWNED: "); // red
-        MQToSTML(szProcessTemp, szStringStart, MAX_STRING, 0xFF0000);
+        //sprintf(szProcessTemp, "SPAWNED: "); // red
+        //MQToSTML(szProcessTemp, szStringStart, MAX_STRING, 0xFF0000);
     }
     else
     {
         //sprintf(szStringStart, "<c \"#00FF00\">DESPAWN:</c>");
-        sprintf(szProcessTemp, "DESPAWN: ");
-        MQToSTML(szProcessTemp, szStringStart, MAX_STRING, 0x00FF00); // green
+        //sprintf(szProcessTemp, "DESPAWN: ");
+        //MQToSTML(szProcessTemp, szStringStart, MAX_STRING, 0x00FF00); // green
     }
 
-    if (CFG.Timestamp)
+    /*if (CFG.Timestamp)
     {
         struct tm* THE_TIME;
         _time64(&tCurrentTime);
@@ -925,20 +925,20 @@ void WriteSpawn(PSPAWNINFO pFormatSpawn, char* szTypeString, char* szLocString, 
     else
     {
         strcpy(szFinalOutput, szStringStart);
-    }
+    }*/
 
-    strcat(szFinalOutput, szColoredSpawn);
+    //strcat(szFinalOutput, szColoredSpawn);
 
     if (CFG.SpawnID)
     {
         //sprintf(szSpawnID, " (<c \"#FFFF00\">id %d</c>)", pFormatSpawn->SpawnID); // yellow
-        MQToSTML(" (", szProcessTemp);
+        /*MQToSTML(" (", szProcessTemp);
         strcat(szFinalOutput, szProcessTemp);
         sprintf(szProcessTemp, "id %d", pFormatSpawn->SpawnID);
         MQToSTML(szProcessTemp, szSpawnID, MAX_STRING, ulColor);
         strcat(szFinalOutput, szSpawnID);
         MQToSTML(")", szProcessTemp);
-        strcat(szFinalOutput, szProcessTemp);
+        strcat(szFinalOutput, szProcessTemp);*/
     }
 
     if (CFG.Location)
@@ -949,14 +949,14 @@ void WriteSpawn(PSPAWNINFO pFormatSpawn, char* szTypeString, char* szLocString, 
     }
 
 
-    strcat(szFinalOutput,"<br>");
+    /*strcat(szFinalOutput,"<br>");
     ((CXWnd*)OurWnd)->Show(1, 1);
-    CXStr NewText(szFinalOutput);
-    (OurWnd->StmlOut)->AppendSTML(NewText);
-    if (bScrollDown)
-    {
-        (OurWnd->OutWnd)->SetVScrollPos(OurWnd->OutStruct->VScrollMax);
-    }
+    CXStr NewText(szFinalOutput);*/
+    //(OurWnd->StmlOut)->AppendSTML(NewText);
+    //if (bScrollDown)
+    //{
+    //    (OurWnd->OutWnd)->SetVScrollPos(OurWnd->OutStruct->VScrollMax);
+    //}
 }
 
 CWatchType* IsTypeOn(CWatchType* pCheck, bool bSpawn)
