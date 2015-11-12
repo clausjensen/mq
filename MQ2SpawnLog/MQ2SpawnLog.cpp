@@ -5,7 +5,7 @@
 #include <vector>
 
 const char*  MODULE_NAME    = "MQ2SpawnLog";
-const double MODULE_VERSION = 11.0324;
+const double MODULE_VERSION = 1.0;
 PreSetup(MODULE_NAME);
 
 const unsigned char ARG_SPAWN   = 1;
@@ -48,17 +48,13 @@ int StartLog()
     fOurLog = fopen(szLogPath, "a+");
     if (fOurLog == NULL)
     {
-        WriteChatf("\ay%s\aw:: Unable to open log file. Check your file path and permissions. ( \ag%s \ax)", MODULE_NAME, szLogPath);
+        WriteChatf("\ay%s\aw:: Unable to open log file ( \ag%s \ax)", MODULE_NAME, szLogPath);
         bLogActive = bLogReady = false;
         return LOG_FAIL;
     }
     else
     {
-        char szTemp[MAX_STRING] = {0};
-        time(&rawtime);
-        timeinfo = localtime(&rawtime);
-        strftime(szTemp, MAX_STRING, "New Logging Session Started on %Y-%m-%d at %H:%M:%S\n", timeinfo);
-        fprintf(fOurLog, "%s", szTemp);
+		WriteChatf("\ay%s\aw:: Logging spawns ( \ag%s \ax)", MODULE_NAME, szLogPath);
         fclose(fOurLog);
         bLogReady = true;
     }
@@ -70,12 +66,6 @@ int EndLog()
     fOurLog = fopen(szLogPath, "a+");
     if (fOurLog != NULL)
     {
-        char szTemp[MAX_STRING] = {0};
-        time(&rawtime);
-        timeinfo = localtime(&rawtime);
-        strftime(szTemp, MAX_STRING, "Logging Session Ended on %Y-%m-%d at %H:%M:%S\n\n", timeinfo);
-        fprintf(fOurLog, "%s", szTemp);
-        fclose(fOurLog);
         bLogActive = bLogReady = false;
         return LOG_SUCCESS;
     }
@@ -803,60 +793,60 @@ void WatchSpawns(PSPAWNINFO pLPlayer, char* szLine)
     if (CFG.AutoSave) HandleConfig(true);
 }
 
-// Wrappers to promote laziness
-void ToggleSpawns(PSPAWNINFO pLPlayer, char* szLine)
-{
-    char szArg1[MAX_STRING] = {0};
-    GetArg(szArg1, szLine, 1);
+//// Wrappers to promote laziness
+//void ToggleSpawns(PSPAWNINFO pLPlayer, char* szLine)
+//{
+//    char szArg1[MAX_STRING] = {0};
+//    GetArg(szArg1, szLine, 1);
+//
+//    if (!strnicmp(szArg1, "all", 4))
+//    {
+//        WatchSpawns(pLPlayer, "all spawn");
+//    }
+//    else if (!strnicmp(szArg1, "pc", 3))
+//    {
+//        WatchSpawns(pLPlayer, "pc spawn");
+//    }
+//    else if (!strnicmp(szArg1, "npc", 4))
+//    {
+//        WatchSpawns(pLPlayer, "npc spawn");
+//    }
+//    else if (!strnicmp(szArg1, "unknown", 7))
+//    {
+//        WatchSpawns(pLPlayer, "unknown spawn");
+//    }
+//    else
+//    {
+//        WriteChatf("\ay%s\aw:: Invalid parameter. Use \ag/spawn help\ax for valid toggles.", MODULE_NAME);
+//    }
+//}
 
-    if (!strnicmp(szArg1, "all", 4))
-    {
-        WatchSpawns(pLPlayer, "all spawn");
-    }
-    else if (!strnicmp(szArg1, "pc", 3))
-    {
-        WatchSpawns(pLPlayer, "pc spawn");
-    }
-    else if (!strnicmp(szArg1, "npc", 4))
-    {
-        WatchSpawns(pLPlayer, "npc spawn");
-    }
-    else if (!strnicmp(szArg1, "unknown", 7))
-    {
-        WatchSpawns(pLPlayer, "unknown spawn");
-    }
-    else
-    {
-        WriteChatf("\ay%s\aw:: Invalid parameter. Use \ag/spawn help\ax for valid toggles.", MODULE_NAME);
-    }
-}
-
-void ToggleDespawns(PSPAWNINFO pLPlayer, char* szLine)
-{
-    char szArg1[MAX_STRING] = {0};
-    GetArg(szArg1, szLine, 1);
-
-    if (!strnicmp(szArg1, "all", 4))
-    {
-        WatchSpawns(pLPlayer, "all despawn");
-    }
-    else if (!strnicmp(szArg1, "pc", 3))
-    {
-        WatchSpawns(pLPlayer, "pc despawn");
-    }
-    else if (!strnicmp(szArg1, "npc", 4))
-    {
-        WatchSpawns(pLPlayer, "npc despawn");
-    }
-    else if (!strnicmp(szArg1, "unknown", 7))
-    {
-        WatchSpawns(pLPlayer, "unknown despawn");
-    }
-    else
-    {
-        WriteChatf("\ay%s\aw:: Invalid parameter. Use \ag/spawn help\ax for valid toggles.", MODULE_NAME);
-    }
-}
+//void ToggleDespawns(PSPAWNINFO pLPlayer, char* szLine)
+//{
+//    char szArg1[MAX_STRING] = {0};
+//    GetArg(szArg1, szLine, 1);
+//
+//    if (!strnicmp(szArg1, "all", 4))
+//    {
+//        WatchSpawns(pLPlayer, "all despawn");
+//    }
+//    else if (!strnicmp(szArg1, "pc", 3))
+//    {
+//        WatchSpawns(pLPlayer, "pc despawn");
+//    }
+//    else if (!strnicmp(szArg1, "npc", 4))
+//    {
+//        WatchSpawns(pLPlayer, "npc despawn");
+//    }
+//    else if (!strnicmp(szArg1, "unknown", 7))
+//    {
+//        WatchSpawns(pLPlayer, "unknown despawn");
+//    }
+//    else
+//    {
+//        WriteChatf("\ay%s\aw:: Invalid parameter. Use \ag/spawn help\ax for valid toggles.", MODULE_NAME);
+//    }
+//}
 
 void WriteSpawn(PSPAWNINFO pFormatSpawn, char* szTypeString, char* szLocString, bool bSpawn)
 {
@@ -872,7 +862,8 @@ void WriteSpawn(PSPAWNINFO pFormatSpawn, char* szTypeString, char* szLocString, 
     if (bLogReady)
     {
         char szLogOut[MAX_STRING] = {0};
-        sprintf(szLogOut, "%s: [ %d, %s, %s ] < %s > ( %s ) ( id %d ) %s", bSpawn ? "SPAWNED" : "DESPAWN", pFormatSpawn->Level, pEverQuest->GetRaceDesc(pFormatSpawn->Race), GetClassDesc(pFormatSpawn->Class), pFormatSpawn->DisplayedName, szTypeString, pFormatSpawn->SpawnID, szLocString);
+        //sprintf(szLogOut, "%s: [ %d, %s, %s ] < %s > ( %s ) ( id %d ) %s", bSpawn ? "SPAWNED" : "DESPAWN", pFormatSpawn->Level, pEverQuest->GetRaceDesc(pFormatSpawn->Race), GetClassDesc(pFormatSpawn->Class), pFormatSpawn->DisplayedName, szTypeString, pFormatSpawn->SpawnID, szLocString);
+        sprintf(szLogOut, "%s: [ %d, %s, %s ] < %s > ( %s ) ( id %d ) %s", bSpawn ? "S" : "D", pFormatSpawn->Level, pEverQuest->GetRaceDesc(pFormatSpawn->Race), GetClassDesc(pFormatSpawn->Class), pFormatSpawn->DisplayedName, szTypeString, pFormatSpawn->SpawnID, szLocString);
         WriteToLog(szLogOut);
     }
     // end of logging function
@@ -970,13 +961,11 @@ PLUGIN_API void OnBeginZone()
 PLUGIN_API void SetGameState(unsigned long ulGameState)
 {
     ulGameState = GetGameState();
-
     if (ulGameState == GAMESTATE_INGAME)
     {
-        sprintf(szLogFile, "MQ2SpawnLog-%s-%s.log",((PCHARINFO)pCharData)->Name, GetShortZone(((PSPAWNINFO)pLocalPlayer)->Zone));
+		sprintf(szLogFile, "MQ2SpawnLog-%s-%s-%i.log", ((PCHARINFO)pCharData)->Name, GetShortZone(((PSPAWNINFO)pLocalPlayer)->Zone), ((PSPAWNINFO)pLocalPlayer)->Instance);
         sprintf(szCharName, "%s.%s", EQADDR_SERVERNAME, ((PCHARINFO)pCharData)->Name);
         sprintf(szLogPath, "%s\\%s", szDirPath, szLogFile);
-        /*CreateOurWnd();*/
         tSeconds = time(NULL);
         bZoning = false;
 
@@ -985,14 +974,6 @@ PLUGIN_API void SetGameState(unsigned long ulGameState)
     else
     {
         bZoning = true;
-        if (ulGameState == GAMESTATE_CHARSELECT)
-        {
-            //KillOurWnd(true);
-        }
-        else if (ulGameState == GAMESTATE_PRECHARSELECT)
-        {
-            //KillOurWnd(false);
-        }
         EndLog();
     }
 }
@@ -1002,13 +983,11 @@ PLUGIN_API void OnReloadUI()
     if (GetGameState() == GAMESTATE_INGAME)
     {
         sprintf(szCharName, "%s.%s", EQADDR_SERVERNAME, ((PCHARINFO)pCharData)->Name);
-        //CreateOurWnd();
     }
 }
 
 PLUGIN_API void OnCleanUI()
 {
-    //KillOurWnd(true);
 }
 
 PLUGIN_API void OnPulse()
@@ -1021,9 +1000,6 @@ PLUGIN_API void OnPulse()
 
 PLUGIN_API void InitializePlugin()
 {
-     /*AddCommand("/spawn", WatchSpawns);
-     AddCommand("/spwn",  ToggleSpawns);
-     AddCommand("/dspwn", ToggleDespawns);*/
     tSeconds = time(NULL);
     HandleConfig(false);
     bLoaded = true;
@@ -1031,10 +1007,6 @@ PLUGIN_API void InitializePlugin()
 
 PLUGIN_API void ShutdownPlugin()
 {
-     /*RemoveCommand("/spawn");
-     RemoveCommand("/spwn");
-     RemoveCommand("/dspwn");*/
     EndLog();
     HandleConfig(true);
-    //KillOurWnd(false);
 }
