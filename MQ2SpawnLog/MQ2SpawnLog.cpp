@@ -862,8 +862,7 @@ void WriteSpawn(PSPAWNINFO pFormatSpawn, char* szTypeString, char* szLocString, 
     if (bLogReady)
     {
         char szLogOut[MAX_STRING] = {0};
-        //sprintf(szLogOut, "%s: [ %d, %s, %s ] < %s > ( %s ) ( id %d ) %s", bSpawn ? "SPAWNED" : "DESPAWN", pFormatSpawn->Level, pEverQuest->GetRaceDesc(pFormatSpawn->Race), GetClassDesc(pFormatSpawn->Class), pFormatSpawn->DisplayedName, szTypeString, pFormatSpawn->SpawnID, szLocString);
-        sprintf(szLogOut, "%s: [ %d, %s, %s ] < %s > ( %s ) ( id %d ) %s - %s", bSpawn ? "S" : "D", pFormatSpawn->Level, pEverQuest->GetRaceDesc(pFormatSpawn->Race), GetClassDesc(pFormatSpawn->Class), pFormatSpawn->DisplayedName, szTypeString, pFormatSpawn->SpawnID, szLocString, pFormatSpawn->Equipment.Primary.ID);
+        sprintf(szLogOut, "%s: [ %d, %s, %s ] < %s > ( %s ) ( id %d ) %s", bSpawn ? "SPAWNED" : "DESPAWN", pFormatSpawn->Level, pEverQuest->GetRaceDesc(pFormatSpawn->Race), GetClassDesc(pFormatSpawn->Class), pFormatSpawn->DisplayedName, szTypeString, pFormatSpawn->SpawnID, szLocString);
         WriteToLog(szLogOut);
     }
     // end of logging function
