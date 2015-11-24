@@ -179,35 +179,6 @@ public:
         return CSidlScreenWnd::WndNotification(pWnd,Message,data);
     };
 
-    void SetFontSize(unsigned int size)
-    {
-        struct FONTDATA
-        {
-            DWORD NumFonts;
-            PCHAR* Fonts; 
-        };
-        FONTDATA* Fonts;    // font array structure
-        DWORD* SelFont;     // selected font
-        Fonts = (FONTDATA*)&(((char*)pWndMgr)[EQ_CHAT_FONT_OFFSET]);
-
-        if (size < 0 || size >= (int) Fonts->NumFonts)
-        {
-            return;
-        }
-        if (Fonts->Fonts == NULL || OurWnd == NULL)
-        {
-            return;
-        }
-
-        SelFont = (DWORD*)Fonts->Fonts[size];
-        CXStr str(((CStmlWnd*)OurWnd->OutWnd)->GetSTMLText());
-        ((CXWnd*)OurWnd->OutWnd)->SetFont(SelFont);
-        ((CStmlWnd*)OurWnd->OutWnd)->SetSTMLText(str, 1, 0);
-        ((CStmlWnd*)OurWnd->OutWnd)->ForceParseNow();
-        DebugTry(((CXWnd*)OurWnd->OutWnd)->SetVScrollPos(OurWnd->OutWnd->VScrollMax));
-        OurWnd->FontSize = size;
-    };
-
     unsigned long FontSize;
 };
 
@@ -259,7 +230,6 @@ void CreateOurWnd()
         OurWnd->BGColor.R       = GetPrivateProfileInt(CFG.SaveByChar ? szCharName : "Window", "BGTint.red",   255,  INIFileName);
         OurWnd->BGColor.G       = GetPrivateProfileInt(CFG.SaveByChar ? szCharName : "Window", "BGTint.green", 255,  INIFileName);
         OurWnd->BGColor.B       = GetPrivateProfileInt(CFG.SaveByChar ? szCharName : "Window", "BGTint.blue",  255,  INIFileName);
-        OurWnd->SetFontSize(GetPrivateProfileInt(CFG.SaveByChar ? szCharName : "Window", "FontSize",     2,    INIFileName));
 
         char szWindowText[MAX_STRING] = {0};
         GetPrivateProfileString(CFG.SaveByChar ? szCharName : "Window", "WindowTitle", "Spawns", szWindowText, MAX_STRING, INIFileName);
@@ -472,19 +442,6 @@ void WatchSpawns(PSPAWNINFO pLPlayer, char* szLine)
         return;
     }
 
-    // added custom exclude
-    if (!strnicmp(szArg1, "exclude", 8))
-    {
-        strlwr(szArg2);
-        SpawnFilters.push_back(szArg2);
-        int iNewSize = SpawnFilters.size();
-        char szTempFilt[10] = {0};
-        WritePrivateProfileString("Exclude", itoa(iNewSize, szTempFilt, 10), szArg2, INIFileName);
-        WriteChatf("\ay%s\aw:: Added Exclude # \ay%d\ax: \ag%s", MODULE_NAME, iNewSize, szArg2);
-        return;
-    }
-    // end of custom exclude addition
-
     if (*szArg2)
     {
         if (!strnicmp(szArg2,      "spawn",    6))  ucArgType = ARG_SPAWN;
@@ -526,327 +483,7 @@ void WatchSpawns(PSPAWNINFO pLPlayer, char* szLine)
             }
         }
     }
-
-    if (!strnicmp(szArg1, "on", 3))
-    {
-        CFG.ON = true;
-        WatchState(false);
-    }
-    else if (!strnicmp(szArg1, "off", 4))
-    {
-        CFG.ON = false;
-        WatchState(false);
-    }
-    else if (!strnicmp(szArg1, "loc", 4))
-    {
-        CFG.Location = !CFG.Location;
-        WatchState(false);
-    }
-    else if (!strnicmp(szArg1, "spawnid", 8))
-    {
-        CFG.SpawnID = !CFG.SpawnID;
-        WatchState(false);
-    }
-    else if (!strnicmp(szArg1, "timestamp", 10))
-    {
-        CFG.Timestamp = !CFG.Timestamp;
-        WatchState(false);
-    }
-    else if (!strnicmp(szArg1, "savebychar", 11))
-    {
-        CFG.SaveByChar = !CFG.SaveByChar;
-        sprintf(szCharName, "%s.%s", EQADDR_SERVERNAME, ((PCHARINFO)pCharData)->Name);
-        WatchState(false);
-    }
-    else if (!strnicmp(szArg1, "autosave", 9))
-    {
-        CFG.AutoSave = !CFG.AutoSave;
-        WatchState(false);
-    }
-    else if (!strnicmp(szArg1, "min", 4))
-    {
-        if (OurWnd) ((CXWnd*)OurWnd)->OnMinimizeBox();
-        return;
-    }
-    else if (!strnicmp(szArg1, "clear", 6))
-    {
-        if (OurWnd) ((CChatWindow*)OurWnd)->Clear();
-        return;
-    }
-    else if (!strnicmp(szArg1, "load", 5))
-    {
-        HandleConfig(false);
-        return;
-    }
-    else if (!strnicmp(szArg1, "save", 5))
-    {
-        HandleConfig(true);
-        return;
-    }
-    else if (!strnicmp(szArg1, "status", 7))
-    {
-        WatchState(true);
-        return;
-    }
-    else if (!strnicmp(szArg1, "delay", 6))
-    {
-        char* pNotNum = NULL;
-        int iValid = (int)strtoul(szArg2, &pNotNum, 10);
-        if (iValid < 1 || *pNotNum)
-        {
-            WriteChatf("\ay%s\aw:: \arError\ax - Delay must be a positive numerical value.", MODULE_NAME);
-            return;
-        }
-        CFG.Delay = iValid;
-        WatchState(false);
-    }
-    else if (!strnicmp(szArg1, "font", 5))
-    {
-        char* pNotNum = NULL;
-        int iValid = (int)strtoul(szArg2, &pNotNum, 10);
-        if (iValid < 1 || *pNotNum)
-        {
-            WriteChatf("\ay%s\aw:: \arError\ax - Font must be a positive numerical value.", MODULE_NAME);
-            return;
-        }
-        if (OurWnd) OurWnd->SetFontSize(iValid);
-        WatchState(false);
-    }
-    else if (!strnicmp(szArg1, "help", 5))
-    {
-        WriteChatf("\ay%s\aw:: \ag/spawn\ax [ \agon\ax | \agoff\ax | \agspawnid\ax | \agloc\ax | \agtimestamp\ax ]", MODULE_NAME);
-        WriteChatf("\ay%s\aw:: \ag/spawn\ax [ \agsave\ax | \agload\ax | \agsavebychar\ax | \agstatus\ax | \agautosave\ax | \aghelp\ax ]", MODULE_NAME);
-        WriteChatf("\ay%s\aw:: \ag/spawn\ax [ \agclear\ax | \agmin\ax | \agfont #\ax ]", MODULE_NAME);
-        WriteChatf("\ay%s\aw:: \ag/spawn\ax [ \agdelay #\ax ] - Sets zone time delay.", MODULE_NAME);
-        WriteChatf("\ay%s\aw:: \ag/log\ax   [ \agon\ax | \agoff\ax | \agauto\ax | \agsetpath\ax <\aypath\ax> ]", MODULE_NAME);
-        WriteChatf("\ay%s\aw:: \ag/spawn\ax [ \aytogglename\ax ] [ \agspawn\ax | \agdespawn\ax | \agminlevel #\ax | \agmaxlevel #\ax | \agcolor RRGGBB\ax ]", MODULE_NAME);
-        WriteChatf("\ay%s\aw:: \agValid toggles:\ax all - pc - npc - mount - pet - merc - flyer - campfire - banner - aura - object - untargetable - chest - trap - timer - trigger - corpse - item - unknown", MODULE_NAME);
-    }
-    else if (!strnicmp(szArg1, "all", 4))
-    {
-        switch(ucArgType)
-        {
-        case ARG_SPAWN:
-            ToggleSetting("ALL TYPES spawn", &CFG.ALL.Spawn);
-            break;
-        case ARG_DESPAWN:
-            ToggleSetting("ALL TYPES despawn", &CFG.ALL.Despawn);
-            break;
-        case ARG_MINLVL:
-            SetSpawnLevel("ALL TYPES min level", &CFG.ALL.MinLVL, iNewLevel);
-            break;
-        case ARG_MAXLVL:
-            SetSpawnLevel("ALL TYPES max level", &CFG.ALL.MaxLVL, iNewLevel);
-            break;
-        case ARG_COLOR:
-            SetSpawnColor("ALL TYPES color", &CFG.ALL.Color, ulNewColor);
-            break;
-        default:
-            WriteChatf("\ay%s\aw:: \arInvalid parameter. Use \ag/spawn help\ax.", MODULE_NAME);
-        }
-    }
-    else if (!strnicmp(szArg1, "pc", 3))
-    {
-        switch(ucArgType)
-        {
-        case ARG_SPAWN:
-            ToggleSetting("PC spawn", &CFG.PC.Spawn);
-            break;
-        case ARG_DESPAWN:
-            ToggleSetting("PC despawn", &CFG.PC.Despawn);
-            break;
-        case ARG_MINLVL:
-            SetSpawnLevel("PC min level", &CFG.PC.MinLVL, iNewLevel);
-            break;
-        case ARG_MAXLVL:
-            SetSpawnLevel("PC max level", &CFG.PC.MaxLVL, iNewLevel);
-            break;
-        case ARG_COLOR:
-            SetSpawnColor("PC color", &CFG.PC.Color, ulNewColor);
-            break;
-        default:
-            WriteChatf("\ay%s\aw:: \arInvalid parameter. Use \ag/spawn help\ax.", MODULE_NAME);
-        }
-    }
-    else if (!strnicmp(szArg1, "npc", 4))
-    {
-        switch(ucArgType)
-        {
-        case ARG_SPAWN:
-            ToggleSetting("NPC spawn", &CFG.NPC.Spawn);
-            break;
-        case ARG_DESPAWN:
-            ToggleSetting("NPC despawn", &CFG.NPC.Despawn);
-            break;
-        case ARG_MINLVL:
-            SetSpawnLevel("NPC min level", &CFG.NPC.MinLVL, iNewLevel);
-            break;
-        case ARG_MAXLVL:
-            SetSpawnLevel("NPC max level", &CFG.NPC.MaxLVL, iNewLevel);
-            break;
-        case ARG_COLOR:
-            SetSpawnColor("NPC color", &CFG.NPC.Color, ulNewColor);
-            break;
-        default:
-            WriteChatf("\ay%s\aw:: \arInvalid parameter. Use \ag/spawn help\ax.", MODULE_NAME);
-        }
-    }
-    else if (!strnicmp(szArg1, "unknown", 7))
-    {
-        switch(ucArgType)
-        {
-        case ARG_SPAWN:
-            ToggleSetting("UNKNOWN spawn", &CFG.UNKNOWN.Spawn);
-            break;
-        case ARG_DESPAWN:
-            ToggleSetting("UNKNOWN despawn", &CFG.UNKNOWN.Despawn);
-            break;
-        case ARG_MINLVL:
-            SetSpawnLevel("UNKNOWN min level", &CFG.UNKNOWN.MinLVL, iNewLevel);
-            break;
-        case ARG_MAXLVL:
-            SetSpawnLevel("UNKNOWN max level", &CFG.UNKNOWN.MaxLVL, iNewLevel);
-            break;
-        case ARG_COLOR:
-            SetSpawnColor("UNKNOWN color", &CFG.UNKNOWN.Color, ulNewColor);
-            break;
-        default:
-            WriteChatf("\ay%s\aw:: \arInvalid parameter. Use \ag/spawn help\ax.", MODULE_NAME);
-        }
-    }
-    // added logging 2010-09-04
-    else if (!strnicmp(szArg1, "log", 4))
-    {
-        if (!*szArg2)
-        {
-            WriteChatf("\ay%s\aw:: %s - Usage - \aglog\aw [ \ayon\ax | \ayoff\ax | \ayauto\ax | \aysetpath\ax <\aypath\ax> ]", MODULE_NAME);
-            return;
-        }
-
-        if (!strnicmp(szArg2, "on", 3))
-        {
-            if (bLogActive)
-            {
-                WriteChatf("\ay%s\aw:: \arLogging already active\aw.", MODULE_NAME);
-                return;
-            }
-
-            bLogCmdUsed = bLogActive = true;
-            if (StartLog())
-            {
-                WriteChatf("\ay%s\aw:: Logging \agENABLED\aw.", MODULE_NAME);
-            }
-            else
-            {
-                WriteChatf("\ay%s\aw:: Logging \arDISABLED\aw.", MODULE_NAME);
-            }
-        }
-        else if (!strnicmp(szArg2, "off", 4))
-        {
-            if (!bLogActive)
-            {
-                WriteChatf("\ay%s\aw:: \arLogging not currently active\aw.", MODULE_NAME);
-                return;
-            }
-            EndLog();
-            bLogCmdUsed = bLogActive = bLogReady = false;
-            WriteChatf("\ay%s\aw:: Logging \arDISABLED\aw.", MODULE_NAME);
-        }
-        else if (!strnicmp(szArg2, "auto", 5))
-        {
-            CFG.Logging = !CFG.Logging;
-            WritePrivateProfileString(CFG.SaveByChar ? szCharName : "Settings", "Logging", CFG.Logging ? "on" : "off", INIFileName);
-            WriteChatf("\ay%s\aw:: Automatic logging %s", MODULE_NAME, CFG.Logging ? "\agENABLED" : "\arDISABLED");
-        }
-        else if (!strnicmp(szArg2, "setpath", 8))
-        {
-            if (!*szArg3)
-            {
-                WriteChatf("\ay%s\aw:: \arYou must specify a path\aw.", MODULE_NAME);
-                return;
-            }
-
-            if (bLogActive)
-            {
-                EndLog();
-                strcpy(szDirPath, szArg3);
-                sprintf(szLogPath, "%s\\%s", szDirPath, szLogFile);
-                bLogActive = true;
-                StartLog();
-            }
-            else
-            {
-                strcpy(szDirPath, szArg3);
-                sprintf(szLogPath, "%s\\%s", szDirPath, szLogFile);
-            }
-            WritePrivateProfileString(CFG.SaveByChar ? szCharName : "Settings", "LogPath", szDirPath, INIFileName);
-            WriteChatf("\ay%s\aw:: Log folder path set to \ag%s", MODULE_NAME, szDirPath);
-        }
-    }
-    // end of logging
-    else
-    {
-        WriteChatf("\ay%s\aw:: Invalid parameter. Use \ag/spawn help\ax for valid options.", MODULE_NAME);
-        return;
-    }
-
-    if (CFG.AutoSave) HandleConfig(true);
 }
-
-//// Wrappers to promote laziness
-//void ToggleSpawns(PSPAWNINFO pLPlayer, char* szLine)
-//{
-//    char szArg1[MAX_STRING] = {0};
-//    GetArg(szArg1, szLine, 1);
-//
-//    if (!strnicmp(szArg1, "all", 4))
-//    {
-//        WatchSpawns(pLPlayer, "all spawn");
-//    }
-//    else if (!strnicmp(szArg1, "pc", 3))
-//    {
-//        WatchSpawns(pLPlayer, "pc spawn");
-//    }
-//    else if (!strnicmp(szArg1, "npc", 4))
-//    {
-//        WatchSpawns(pLPlayer, "npc spawn");
-//    }
-//    else if (!strnicmp(szArg1, "unknown", 7))
-//    {
-//        WatchSpawns(pLPlayer, "unknown spawn");
-//    }
-//    else
-//    {
-//        WriteChatf("\ay%s\aw:: Invalid parameter. Use \ag/spawn help\ax for valid toggles.", MODULE_NAME);
-//    }
-//}
-
-//void ToggleDespawns(PSPAWNINFO pLPlayer, char* szLine)
-//{
-//    char szArg1[MAX_STRING] = {0};
-//    GetArg(szArg1, szLine, 1);
-//
-//    if (!strnicmp(szArg1, "all", 4))
-//    {
-//        WatchSpawns(pLPlayer, "all despawn");
-//    }
-//    else if (!strnicmp(szArg1, "pc", 3))
-//    {
-//        WatchSpawns(pLPlayer, "pc despawn");
-//    }
-//    else if (!strnicmp(szArg1, "npc", 4))
-//    {
-//        WatchSpawns(pLPlayer, "npc despawn");
-//    }
-//    else if (!strnicmp(szArg1, "unknown", 7))
-//    {
-//        WatchSpawns(pLPlayer, "unknown despawn");
-//    }
-//    else
-//    {
-//        WriteChatf("\ay%s\aw:: Invalid parameter. Use \ag/spawn help\ax for valid toggles.", MODULE_NAME);
-//    }
-//}
 
 void WriteSpawn(PSPAWNINFO pFormatSpawn, char* szTypeString, char* szLocString, bool bSpawn)
 {
@@ -862,7 +499,7 @@ void WriteSpawn(PSPAWNINFO pFormatSpawn, char* szTypeString, char* szLocString, 
     if (bLogReady)
     {
         char szLogOut[MAX_STRING] = {0};
-        sprintf(szLogOut, "%s: [ %d, %s, %s ] < %s > ( %s ) ( id %d ) %s", bSpawn ? "SPAWNED" : "DESPAWN", pFormatSpawn->Level, pEverQuest->GetRaceDesc(pFormatSpawn->Race), GetClassDesc(pFormatSpawn->Class), pFormatSpawn->DisplayedName, szTypeString, pFormatSpawn->SpawnID, szLocString);
+		sprintf(szLogOut, "%s,[%s,%d,%d,%s,%s],[%s]", pFormatSpawn->DisplayedName, szTypeString, pFormatSpawn->SpawnID, pFormatSpawn->Level, pEverQuest->GetRaceDesc(pFormatSpawn->Race), GetClassDesc(pFormatSpawn->Class), szLocString);
         WriteToLog(szLogOut);
     }
     // end of logging function
@@ -931,7 +568,7 @@ void CheckOurType(PSPAWNINFO pNewSpawn, bool bSpawn)
         return;
     }
     // if we did not put INVALID or UNKNOWN above
-    if (!*szSpawnLoc) sprintf(szSpawnLoc, " @ %.2f, %.2f, %.2f", pNewSpawn->Y, pNewSpawn->X, pNewSpawn->Z);
+    if (!*szSpawnLoc) sprintf(szSpawnLoc, "%.2f, %.2f, %.2f", pNewSpawn->Y, pNewSpawn->X, pNewSpawn->Z);
 
     WriteSpawn(pNewSpawn, szType, szSpawnLoc, bSpawn);
 }
