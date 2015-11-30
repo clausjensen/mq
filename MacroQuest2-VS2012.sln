@@ -80,6 +80,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MQ2MoveUtils", "MQ2MoveUtil
 		{2A0A06A4-E9C6-4229-82EE-BD2D4E0A7221} = {2A0A06A4-E9C6-4229-82EE-BD2D4E0A7221}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MQ2Exchange", "MQ2Exchange\MQ2Exchange.vcxproj", "{FA3DA585-1C65-4E0D-AABF-D44489758FBB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2A0A06A4-E9C6-4229-82EE-BD2D4E0A7221} = {2A0A06A4-E9C6-4229-82EE-BD2D4E0A7221}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Release|Win32 = Release|Win32
@@ -115,6 +120,8 @@ Global
 		{CDB263A3-3695-42D2-BBA2-408D712F9E88}.Release|Win32.Build.0 = Release|Win32
 		{C77BB7D0-C72E-4769-B275-4F201DC6E0E5}.Release|Win32.ActiveCfg = Release|Win32
 		{C77BB7D0-C72E-4769-B275-4F201DC6E0E5}.Release|Win32.Build.0 = Release|Win32
+		{FA3DA585-1C65-4E0D-AABF-D44489758FBB}.Release|Win32.ActiveCfg = Release|Win32
+		{FA3DA585-1C65-4E0D-AABF-D44489758FBB}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
