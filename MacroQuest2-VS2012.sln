@@ -85,6 +85,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MQ2Exchange", "MQ2Exchange\
 		{2A0A06A4-E9C6-4229-82EE-BD2D4E0A7221} = {2A0A06A4-E9C6-4229-82EE-BD2D4E0A7221}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MQ2SpawnLog", "MQ2SpawnLog\MQ2SpawnLog.vcxproj", "{81ED35D7-7DF5-479D-A5BF-F89907534C5D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2A0A06A4-E9C6-4229-82EE-BD2D4E0A7221} = {2A0A06A4-E9C6-4229-82EE-BD2D4E0A7221}
+	EndProjectSection
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MQ2Bandolier", "MQ2Bandolier\MQ2Bandolier.vcxproj", "{615B2A93-4777-4C48-A148-B0D8F0DBB0D7}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2A0A06A4-E9C6-4229-82EE-BD2D4E0A7221} = {2A0A06A4-E9C6-4229-82EE-BD2D4E0A7221}
@@ -128,6 +133,8 @@ Global
 		{F3077B9F-C8B6-441B-9A21-C76EA07CCE2B}.Release|Win32.Build.0 = Release|Win32
 		{CDB263A3-3695-42D2-BBA2-408D712F9E88}.Release|Win32.ActiveCfg = Release|Win32
 		{CDB263A3-3695-42D2-BBA2-408D712F9E88}.Release|Win32.Build.0 = Release|Win32
+		{CDB263A3-3695-42D2-BBA2-408D712F9E88}.Release|Win32.ActiveCfg = Release|Win32
+		{CDB263A3-3695-42D2-BBA2-408D712F9E88}.Release|Win32.Build.0 = Release|Win32
 		{C77BB7D0-C72E-4769-B275-4F201DC6E0E5}.Release|Win32.ActiveCfg = Release|Win32
 		{C77BB7D0-C72E-4769-B275-4F201DC6E0E5}.Release|Win32.Build.0 = Release|Win32
 		{FA3DA585-1C65-4E0D-AABF-D44489758FBB}.Release|Win32.ActiveCfg = Release|Win32
@@ -136,6 +143,10 @@ Global
 		{615B2A93-4777-4C48-A148-B0D8F0DBB0D7}.Release|Win32.Build.0 = Release|Win32
 		{4DAA41C1-A903-4ACC-B2D3-2D5B25B2357E}.Release|Win32.ActiveCfg = Release|Win32
 		{4DAA41C1-A903-4ACC-B2D3-2D5B25B2357E}.Release|Win32.Build.0 = Release|Win32
+		{C77BB7D0-C72E-4769-B275-4F201DC6E0E5}.Release|Win32.ActiveCfg = Release|Win32
+		{C77BB7D0-C72E-4769-B275-4F201DC6E0E5}.Release|Win32.Build.0 = Release|Win32
+		{81ED35D7-7DF5-479D-A5BF-F89907534C5D}.Release|Win32.ActiveCfg = Release|Win32
+		{81ED35D7-7DF5-479D-A5BF-F89907534C5D}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
